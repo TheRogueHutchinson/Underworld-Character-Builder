@@ -610,17 +610,25 @@ def racial1_up(event):
 	if (int(racial1.get()) != 10):
 		racial1.set(int(racial1.get())+1)
 		calc_spent_cp()
+		if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
+			set_CP_and_health(int(blankets.get()))
 		racial1.set(int(racial1.get())-1)
 	else:
 		calc_spent_cp()
+		if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
+			set_CP_and_health(int(blankets.get()))
 
 def racial1_down(event):
 	if (int(racial1.get()) != 0):
 		racial1.set(int(racial1.get())-1)
 		calc_spent_cp()
+		if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
+			set_CP_and_health(int(blankets.get()))
 		racial1.set(int(racial1.get())+1)
 	else:
 		calc_spent_cp()
+		if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
+			set_CP_and_health(int(blankets.get()))
 		
 def colddead_up(event):
 	colddead.set('1')
@@ -1064,17 +1072,21 @@ def racial_bpb_up(event):
 	if (int(racial_bpb.get()) != 10):
 		racial_bpb.set(int(racial_bpb.get())+1)
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 		racial_bpb.set(int(racial_bpb.get())-1)
 	else:
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 
 def racial_bpb_down(event):
 	if (int(racial_bpb.get()) != 0):
 		racial_bpb.set(int(racial_bpb.get())-1)
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 		racial_bpb.set(int(racial_bpb.get())+1)
 	else:
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 
 def racial_str_up(event):
 	if (int(racial_str.get()) != 10):
@@ -2907,6 +2919,7 @@ def change_race(*args):
 		racial_bpb_cstvar.set('50')
 		
 		racial_str_spin.grid_remove()
+		racial_str.set('0')
 		lbl_str.set('')
 		racial_str_cstvar.set('')
 	
@@ -2914,15 +2927,18 @@ def change_race(*args):
 		racial_str_spin.grid()
 		lbl_str.set('Strength Bonus')
 		racial_str_cstvar.set('50')
+		racial_bpb.set('0')
 		
 	else:
 		racial_bpb_spin.grid_remove()
 		lbl_bpb.set('')
 		racial_bpb_cstvar.set('')
+		racial_bpb.set('0')
 		
 		racial_str_spin.grid_remove()
 		lbl_str.set('')
 		racial_str_cstvar.set('')
+		racial_str.set('0')
 		
 	if (race.get() == "FRAG"):
 		frag_race_box.grid()
@@ -3162,7 +3178,7 @@ def set_CP_and_health (num_blankets):
 		CP.set(str(1760 + 10 * (num_blankets - 93)))
 		
 	if (race.get() == 'Human'):
-		CP.set(int(CP.get()) + 150)
+		CP.set(int(CP.get()) + 50)
 		
 	CP_free.set(int(CP.get())-int(CP_spent.get()))
 	level.set(int((int(CP.get())-50)/100))
@@ -3188,6 +3204,11 @@ def set_CP_and_health (num_blankets):
 				else:
 					temp_HP = temp_HP + 1
 			HP.set(int(temp_HP))
+	
+	if (int(racial_bpb.get()) > 0):
+		HP.set(int(HP.get()) + int(racial_bpb.get()) * 5)
+	if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
+		HP.set(int(HP.get()) + int(racial1.get()) * 5)
 			
 	if (int(CP_free.get()) < 0):
 		CP_free_entry.config(foreground='red', font=boldfont)
@@ -3212,9 +3233,8 @@ def set_skill_list(*args):
 		skill_list_str = skill_list_str + "\n" + occup_3_name.get() + " x" + occupational3.get()+ '	' + str(int(occupational3_cstvar.get()) * int(occupational3.get()))
 	if (int(occupational4.get()) > 0):
 		skill_list_str = skill_list_str + "\n" + occup_4_name.get() + " x" + occupational4.get()+ '	' + str(int(occupational4_cstvar.get()) * int(occupational4.get()))
-	if (race.get() != 'Human'):
-		if (int(racial1.get()) > 0):
-			skill_list_str = skill_list_str + "\n" + racial_purch_name.get() + " x" + racial1.get()+ '	' + str(int(racial1_cstvar.get()) * int(racial1.get()))
+	if (int(racial1.get()) > 0):
+		skill_list_str = skill_list_str + "\n" + racial_purch_name.get() + " x" + racial1.get()+ '	' + str(int(racial1_cstvar.get()) * int(racial1.get()))
 	if (racial_bpb.get() != '' and racial_bpb_cstvar.get () != '' and racial_bpb.get() != '0'):
 		skill_list_str = skill_list_str + "\nBody Point Bonus x" + racial_bpb.get()+ '	' + str(int(racial_bpb_cstvar.get()) * int(racial_bpb.get()))
 	if (racial_str.get() != '' and racial_str_cstvar.get () != '' and racial_str.get() != '0'):
