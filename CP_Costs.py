@@ -1,3 +1,287 @@
+merc_costs = {
+
+	#Production
+
+	"trapsmith_cost":75,
+	"create_scroll_cost":75,
+	"tradesman_cost":40,
+	"alchemy_cost":80,
+	"blacksmith_cost":65,
+	"chemistry_cost":90,
+	"artifice_cost":75,
+	
+
+	#Frag
+	
+	"teacher_cost":15,
+	"possum_cost":30,
+	"looting_cost":15,
+	"paragon_cost":0,
+	"heavy_drinker_cost":20,
+	"create_alcohol_cost":25,
+	"cold_dead_hands_cost":30,
+	"favoured_cost":50,
+	"hindsight_cost":20,
+	"intuition_cost":20,
+	
+	
+	#Frag Specific
+
+	"frag1_cost":30,
+	"frag2_cost":40,
+	"frag3_cost":150,
+	"frag4_cost":45,
+	"frag5_cost":30,
+	"frag6_cost":75,
+	"versatility_cost":0,
+
+
+	#Scholar
+	
+	"mysticism_cost":50,
+	"demonic_arts_cost":75,
+	"necromantic_arts_cost":75,
+	"anatomy_cost":40,
+	"firstaid_cost":60,
+	"physician_cost":45,
+	"readwrite_cost":70,
+	"readmagic_cost":45,
+	"readmagic_advanced_cost":50,
+	"readmagic_ritual_cost":90,
+	"sphere1_cost":100,
+	"sphere2_cost":200,
+	"sphere3_cost":300,
+	"sphereadv_cost":300,
+	"elemental_attune_cost":25,
+	"slot1_cost":30,
+	"slot2_cost":40,
+	"slot3_cost":80,
+	"slot4_cost":100,
+	"slot5_cost":100,
+	"slot6_cost":120,
+	"slot7_cost":120,
+	"slot8_cost":150,
+	"slot9_cost":150,
+	"slotritual_cost":40,
+	
+
+	#Warrior
+	
+	"ambidexterity_cost":20,
+	"florentine_cost":40,
+	"flurry_cost":40,
+	"heavy_armour_cost":15,
+	"self_mutilate_cost":15,
+	"shield_cost":50,
+	"refocus_cost":40,
+	"groupprof_med_cost":40,
+	"groupprof_large_cost":70,
+	"prof_exotic_cost":100,
+	"spec_group_cost":120,
+	"spec_specific_cost":100,
+	"slay_cost":100,
+	"slay_master_cost":120,
+	
+
+	#Rogue
+	
+	"garrotte_cost":55,
+	"sap_cost":55,
+	"vitalblow_cost":85,
+	"dodge_cost":170,
+	"crit_spec_cost":150,
+	"crit_group_cost":170,
+	"execute_cost":170,
+	"execute_master_cost":190
+
+}
+
+ranger_costs = {
+
+	#Production
+
+	"trapsmith_cost":65,
+	"create_scroll_cost":75,
+	"tradesman_cost":40,
+	"alchemy_cost":50,
+	"blacksmith_cost":65,
+	"chemistry_cost":60,
+	"artifice_cost":75,
+	
+	#Frag
+	
+	"teacher_cost":15,
+	"possum_cost":30,
+	"looting_cost":15,
+	"paragon_cost":15,
+	"heavy_drinker_cost":20,
+	"create_alcohol_cost":25,
+	"cold_dead_hands_cost":20,
+	"favoured_cost":50,
+	"hindsight_cost":20,
+	"intuition_cost":20,
+
+	#Frag Specific
+	
+	"frag1_cost":30,
+	"frag2_cost":40,
+	"frag3_cost":150,
+	"frag4_cost":45,
+	"frag5_cost":30,
+	"frag6_cost":75,
+	"versatility_cost":0,
+	
+	#Scholar
+	
+	"mysticism_cost":50,
+	"demonic_arts_cost":75,
+	"necromantic_arts_cost":75,
+	"anatomy_cost":40,
+	"firstaid_cost":60,
+	"physician_cost":45,
+	"readwrite_cost":60,
+	"readmagic_cost":35,
+	"readmagic_advanced_cost":45,
+	"readmagic_ritual_cost":80,
+	"sphere1_cost":100,
+	"sphere2_cost":200,
+	"sphere3_cost":300,
+	"sphereadv_cost":300,
+	"elemental_attune_cost":25,
+	"slot1_cost":30,
+	"slot2_cost":30,
+	"slot3_cost":60,
+	"slot4_cost":60,
+	"slot5_cost":90,
+	"slot6_cost":90,
+	"slot7_cost":120,
+	"slot8_cost":120,
+	"slot9_cost":150,
+	"slotritual_cost":30,
+	
+	#Warrior
+	
+	"ambidexterity_cost":30,
+	"florentine_cost":40,
+	"flurry_cost":50,
+	"heavy_armour_cost":20,
+	"self_mutilate_cost":15,
+	"shield_cost":75,
+	"refocus_cost":40,
+	"groupprof_med_cost":40,
+	"groupprof_large_cost":70,
+	"prof_exotic_cost":100,
+	"spec_group_cost":140,
+	"spec_specific_cost":120,
+	"slay_cost":120,
+	"slay_master_cost":140,
+	
+	#Rogue
+	
+	"garrotte_cost":85,
+	"sap_cost":45,
+	"vitalblow_cost":65,
+	"dodge_cost":140,
+	"crit_spec_cost":125,
+	"crit_group_cost":145,
+	"execute_cost":130,
+	"execute_master_cost":150
+	
+}
+
+templar_costs = {
+
+	#Production
+
+	"trapsmith_cost":75,
+	"create_scroll_cost":40,
+	"tradesman_cost":40,
+	"alchemy_cost":70,
+	"blacksmith_cost":70,
+	"chemistry_cost":80,
+	"artifice_cost":80,
+	
+	#Frag
+	
+	"teacher_cost":15,
+	"possum_cost":30,
+	"looting_cost":15,
+	"paragon_cost":15,
+	"heavy_drinker_cost":20,
+	"create_alcohol_cost":25,
+	"cold_dead_hands_cost":20,
+	"favoured_cost":50,
+	"hindsight_cost":20,
+	"intuition_cost":20,
+	
+	#Frag Specific
+	
+	"frag1_cost":30,
+	"frag2_cost":40,
+	"frag3_cost":150,
+	"frag4_cost":45,
+	"frag5_cost":30,
+	"frag6_cost":75,
+	"versatility_cost":0,
+	
+	#Scholar
+	
+	"mysticism_cost":50,
+	"demonic_arts_cost":60,
+	"necromantic_arts_cost":60,
+	"anatomy_cost":40,
+	"firstaid_cost":60,
+	"physician_cost":45,
+	"readwrite_cost":45,
+	"readmagic_cost":20,
+	"readmagic_advanced_cost":30,
+	"readmagic_ritual_cost":50,
+	"sphere1_cost":75,
+	"sphere2_cost":175,
+	"sphere3_cost":275,
+	"sphereadv_cost":275,
+	"elemental_attune_cost":25,
+	"slot1_cost":10,
+	"slot2_cost":10,
+	"slot3_cost":20,
+	"slot4_cost":30,
+	"slot5_cost":40,
+	"slot6_cost":50,
+	"slot7_cost":60,
+	"slot8_cost":70,
+	"slot9_cost":80,
+	"slotritual_cost":30,
+	
+	#Warrior
+	
+	"ambidexterity_cost":35,
+	"florentine_cost":45,
+	"flurry_cost":55,
+	"heavy_armour_cost":20,
+	"self_mutilate_cost":15,
+	"shield_cost":60,
+	"refocus_cost":40,
+	"groupprof_med_cost":40,
+	"groupprof_large_cost":70,
+	"prof_exotic_cost":100,
+	"spec_group_cost":150,
+	"spec_specific_cost":130,
+	"slay_cost":130,
+	"slay_master_cost":150,
+	
+	#Rogue
+	
+	"garrotte_cost":120,
+	"sap_cost":50,
+	"vitalblow_cost":75,
+	"dodge_cost":150,
+	"crit_spec_cost":130,
+	"crit_group_cost":150,
+	"execute_cost":150,
+	"execute_master_cost":170
+	
+}
+
 assassin_costs = {
 
 	#Production
@@ -569,103 +853,7 @@ mage_costs = {
 	
 }
 
-merc_costs = {
 
-	#Production
-
-	"trapsmith_cost":45,
-	"create_scroll_cost":50,
-	"tradesman_cost":40,
-	"alchemy_cost":40,
-	"blacksmith_cost":80,
-	"chemistry_cost":50,
-	"artifice_cost":90,
-	
-
-	#Frag
-	
-	"teacher_cost":15,
-	"possum_cost":30,
-	"looting_cost":15,
-	"paragon_cost":0,
-	"heavy_drinker_cost":20,
-	"create_alcohol_cost":25,
-	"cold_dead_hands_cost":20,
-	"favoured_cost":50,
-	"hindsight_cost":20,
-	"intuition_cost":20,
-	
-	
-	#Frag Specific
-
-	"frag1_cost":30,
-	"frag2_cost":40,
-	"frag3_cost":150,
-	"frag4_cost":45,
-	"frag5_cost":30,
-	"frag6_cost":75,
-	"versatility_cost":0,
-
-
-	#Scholar
-	
-	"mysticism_cost":50,
-	"demonic_arts_cost":75,
-	"necromantic_arts_cost":75,
-	"anatomy_cost":40,
-	"firstaid_cost":60,
-	"physician_cost":45,
-	"readwrite_cost":55,
-	"readmagic_cost":25,
-	"readmagic_advanced_cost":35,
-	"readmagic_ritual_cost":60,
-	"sphere1_cost":75,
-	"sphere2_cost":175,
-	"sphere3_cost":275,
-	"sphereadv_cost":275,
-	"elemental_attune_cost":25,
-	"slot1_cost":20,
-	"slot2_cost":20,
-	"slot3_cost":40,
-	"slot4_cost":40,
-	"slot5_cost":60,
-	"slot6_cost":60,
-	"slot7_cost":80,
-	"slot8_cost":80,
-	"slot9_cost":100,
-	"slotritual_cost":20,
-	
-
-	#Warrior
-	
-	"ambidexterity_cost":40,
-	"florentine_cost":70,
-	"flurry_cost":75,
-	"heavy_armour_cost":40,
-	"self_mutilate_cost":15,
-	"shield_cost":110,
-	"refocus_cost":40,
-	"groupprof_med_cost":50,
-	"groupprof_large_cost":100,
-	"prof_exotic_cost":130,
-	"spec_group_cost":170,
-	"spec_specific_cost":150,
-	"slay_cost":170,
-	"slay_master_cost":190,
-	
-
-	#Rogue
-	
-	"garrotte_cost":85,
-	"sap_cost":35,
-	"vitalblow_cost":50,
-	"dodge_cost":100,
-	"crit_spec_cost":120,
-	"crit_group_cost":140,
-	"execute_cost":120,
-	"execute_master_cost":150
-
-}
 
 nightblade_costs = {
 
@@ -765,191 +953,6 @@ nightblade_costs = {
 
 }
 
-ranger_costs = {
-
-	#Production
-
-	"trapsmith_cost":65,
-	"create_scroll_cost":75,
-	"tradesman_cost":40,
-	"alchemy_cost":50,
-	"blacksmith_cost":65,
-	"chemistry_cost":60,
-	"artifice_cost":75,
-	
-	#Frag
-	
-	"teacher_cost":15,
-	"possum_cost":30,
-	"looting_cost":15,
-	"paragon_cost":15,
-	"heavy_drinker_cost":20,
-	"create_alcohol_cost":25,
-	"cold_dead_hands_cost":20,
-	"favoured_cost":50,
-	"hindsight_cost":20,
-	"intuition_cost":20,
-
-	#Frag Specific
-	
-	"frag1_cost":30,
-	"frag2_cost":40,
-	"frag3_cost":150,
-	"frag4_cost":45,
-	"frag5_cost":30,
-	"frag6_cost":75,
-	"versatility_cost":0,
-	
-	#Scholar
-	
-	"mysticism_cost":50,
-	"demonic_arts_cost":75,
-	"necromantic_arts_cost":75,
-	"anatomy_cost":40,
-	"firstaid_cost":60,
-	"physician_cost":45,
-	"readwrite_cost":60,
-	"readmagic_cost":35,
-	"readmagic_advanced_cost":45,
-	"readmagic_ritual_cost":80,
-	"sphere1_cost":100,
-	"sphere2_cost":200,
-	"sphere3_cost":300,
-	"sphereadv_cost":300,
-	"elemental_attune_cost":25,
-	"slot1_cost":30,
-	"slot2_cost":30,
-	"slot3_cost":60,
-	"slot4_cost":60,
-	"slot5_cost":90,
-	"slot6_cost":90,
-	"slot7_cost":120,
-	"slot8_cost":120,
-	"slot9_cost":150,
-	"slotritual_cost":30,
-	
-	#Warrior
-	
-	"ambidexterity_cost":30,
-	"florentine_cost":40,
-	"flurry_cost":50,
-	"heavy_armour_cost":20,
-	"self_mutilate_cost":15,
-	"shield_cost":75,
-	"refocus_cost":40,
-	"groupprof_med_cost":40,
-	"groupprof_large_cost":70,
-	"prof_exotic_cost":100,
-	"spec_group_cost":140,
-	"spec_specific_cost":120,
-	"slay_cost":120,
-	"slay_master_cost":140,
-	
-	#Rogue
-	
-	"garrotte_cost":85,
-	"sap_cost":45,
-	"vitalblow_cost":65,
-	"dodge_cost":140,
-	"crit_spec_cost":125,
-	"crit_group_cost":145,
-	"execute_cost":130,
-	"execute_master_cost":150
-	
-}
-
-templar_costs = {
-
-	#Production
-
-	"trapsmith_cost":75,
-	"create_scroll_cost":40,
-	"tradesman_cost":40,
-	"alchemy_cost":70,
-	"blacksmith_cost":70,
-	"chemistry_cost":80,
-	"artifice_cost":80,
-	
-	#Frag
-	
-	"teacher_cost":15,
-	"possum_cost":30,
-	"looting_cost":15,
-	"paragon_cost":15,
-	"heavy_drinker_cost":20,
-	"create_alcohol_cost":25,
-	"cold_dead_hands_cost":20,
-	"favoured_cost":50,
-	"hindsight_cost":20,
-	"intuition_cost":20,
-	
-	#Frag Specific
-	
-	"frag1_cost":30,
-	"frag2_cost":40,
-	"frag3_cost":150,
-	"frag4_cost":45,
-	"frag5_cost":30,
-	"frag6_cost":75,
-	"versatility_cost":0,
-	
-	#Scholar
-	
-	"mysticism_cost":50,
-	"demonic_arts_cost":60,
-	"necromantic_arts_cost":60,
-	"anatomy_cost":40,
-	"firstaid_cost":60,
-	"physician_cost":45,
-	"readwrite_cost":45,
-	"readmagic_cost":20,
-	"readmagic_advanced_cost":30,
-	"readmagic_ritual_cost":50,
-	"sphere1_cost":75,
-	"sphere2_cost":175,
-	"sphere3_cost":275,
-	"sphereadv_cost":275,
-	"elemental_attune_cost":25,
-	"slot1_cost":10,
-	"slot2_cost":10,
-	"slot3_cost":20,
-	"slot4_cost":30,
-	"slot5_cost":40,
-	"slot6_cost":50,
-	"slot7_cost":60,
-	"slot8_cost":70,
-	"slot9_cost":80,
-	"slotritual_cost":30,
-	
-	#Warrior
-	
-	"ambidexterity_cost":35,
-	"florentine_cost":45,
-	"flurry_cost":55,
-	"heavy_armour_cost":20,
-	"self_mutilate_cost":15,
-	"shield_cost":60,
-	"refocus_cost":40,
-	"groupprof_med_cost":40,
-	"groupprof_large_cost":70,
-	"prof_exotic_cost":100,
-	"spec_group_cost":150,
-	"spec_specific_cost":130,
-	"slay_cost":130,
-	"slay_master_cost":150,
-	
-	#Rogue
-	
-	"garrotte_cost":120,
-	"sap_cost":50,
-	"vitalblow_cost":75,
-	"dodge_cost":150,
-	"crit_spec_cost":130,
-	"crit_group_cost":150,
-	"execute_cost":150,
-	"execute_master_cost":170
-	
-}
 
 witchhunter_costs = {
 

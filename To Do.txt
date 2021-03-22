@@ -1,5 +1,5 @@
-
 Requests
+- Add multiple selection dropdowns (radials) to allow selection of multiple sphere 3s, specs, etc.
 - Add frags
 - Work with Apple
 - Work with mobile

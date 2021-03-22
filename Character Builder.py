@@ -16,13 +16,13 @@ root.title("Underworld Character Builder (Unofficial)")
 
 racial_purchasable_names = {"Savar'Aving" : "Cat-Like Reflexes",
 	"Gargylen" : "Stone Skin", "Mountain Dwarf" : "Body Point Bonus", 
-	"Dark Elf" : "Spite Blood", "High Elf" : "Resist Psionics", "Wild Elf" : "Nature's Cache", "Wood Fae" : "Charm Break", "Orc" : "Orcish Constitution", "Ajaunti" : "Ancestor's Wisdom", "Einher" : "Berserker Rage", "Hobling" : "Racial Dodge", "Human" : "", "Am'Rath" : "Clobber", "Faun" : "Forest Revival", "Minotaur" : "Fae Ward", "Kobold" : "KABOOM!", 
+	"Dark Elf" : "Spite Blood", "High Elf" : "Resist Psionics", "Wild Elf" : "Nature's Cache", "Wood Fae" : "Charm Break", "Orc" : "Orcish Constitution", "Ajaunti" : "Ancestor's Wisdom", "Einher" : "Berserker Rage", "Hobling" : "Racial Dodge", "Human" : "Body Point Bonus", "Am'Rath" : "Clobber", "Faun" : "Forest Revival", "Minotaur" : "Fae Ward", "Kobold" : "KABOOM!", 
 	"Ogre" : "Ogre Smash", "Squamata" : "Tongue Pierce", "Avian" : "Create Goggles", "Draconian" : "Reflect Divine", "Fire Elf" : "Endurance", "Goblin" : "Amorphic Mucus", "Risen" : "Spirit Skinning", "Wolven" : "Natural Hide", "Carnal Fae" : "Resist Magic Greater", "Faceless" : "Unmasked", "Gnome" : "Gnomish Device", "Ice Elf" : "Memories in Flesh", 
 	"Sidhe" : "Magic Echo", "Vulcan Dwarf" : "Endure Fire" }
 	
-racial_auto_names = {"Savar'Aving" : "Cat-Like Reflexes",
-	"Gargylen" : "Stone Skin", "Mountain Dwarf" : "Body Point Bonus", 
-	"Dark Elf" : "Spite Blood", "High Elf" : "Resist Psionics", "Wild Elf" : "Nature's Cache", "Wood Fae" : "Charm Break", "Orc" : "Orcish Constitution", "Ajaunti" : "Ancestor's Wisdom", "Einher" : "Berserker Rage", "Hobling" : "Racial Dodge", "Am'Rath" : "Simple Weapon Damage Bonus", "Faun" : "Companion", "Minotaur" : "Enhanced Strength", 
+racial_auto_names = {"Savar'Aving" : "Natural Claws",
+	"Gargylen" : "Alternative Healing", "Mountain Dwarf" : "Resist Toxin", 
+	"Dark Elf" : "Natural Chemists", "High Elf" : "Magical Aptitude", "Wild Elf" : "Chosen Enemy", "Wood Fae" : "Lust for Life", "Orc" : "Immune to Fear", "Ajaunti" : "Eyes of the Mother", "Einher" : "Resist Cold", "Hobling" : "Taunt", "Human" : "Character Point Bonus", "Am'Rath" : "Simple Weapon Damage Bonus", "Faun" : "Companion", "Minotaur" : "Enhanced Strength", 
 	"Kobold" : "Innate Sap", "Ogre" : "Ogre Constitution", 
 	"Squamata" : "Seal Pores", "Avian" : "Spirit Anchor",
 	"Draconian" : "Natural Threshold", "Fire Elf" : "Resist Fire", 
@@ -294,6 +294,7 @@ hindsight = StringVar()
 looting = StringVar()
 intuition = StringVar()
 paragon = StringVar()
+paragon_level = StringVar()
 possum = StringVar()
 teacher = StringVar()
 
@@ -421,6 +422,10 @@ skill_costs = {
 ##### Functions
 
 # Skill purchases
+
+def enter_pressed(event):
+	print ("You pressed enter")
+	calc_spent_cp()
 
 def trapper_up(event):
 	if (int(trapper.get()) != 10):
@@ -698,6 +703,22 @@ def paragon_down(event):
 	paragon.set('0')
 	calc_spent_cp()
 	paragon.set('1')
+	
+def paragon_level_up(event):
+	if (int(paragon_level.get()) != 7):
+		paragon_level.set(int(paragon_level.get())+1)
+		calc_spent_cp()
+		paragon_level.set(int(paragon_level.get())-1)
+	else:
+		calc_spent_cp()
+
+def paragon_level_down(event):
+	if (int(paragon_level.get()) != 1):
+		paragon_level.set(int(paragon_level.get())-1)
+		calc_spent_cp()
+		paragon_level.set(int(paragon_level.get())+1)
+	else:
+		calc_spent_cp()
 
 def possum_up(event):
 	if (int(possum.get()) != 10):
@@ -1729,6 +1750,9 @@ def change_blankets_up(event):
 def change_blankets_down(event):
 	set_CP_and_health(int(blankets.get())-1)
 	calc_spent_cp()
+	
+def change_blankets_manual(event):
+	set_CP_and_health(int(blankets.get()))
 
 # Saving etc.
 
@@ -2355,15 +2379,15 @@ def depend_check():
 		if (int(racial_bpb.get()) > 2):
 			racial_bpb.set('2')
 	elif (race.get() == 'Mountain Dwarf'):
-		racial_bpb_spin.config(to=3)
-		if (int(racial_bpb.get()) > 3):
-			racial_bpb.set('3')
+		racial1_spin.config(to=3)
+		if (int(racial1.get()) > 3):
+			racial1.set('3')
 	elif (race.get() == 'Wild Elf' or race.get() == 'Einher' or race.get() == 'Human'):
 		racial_bpb_spin.config(to=1)
 		if (int(racial_bpb.get()) > 1):
 			racial_bpb.set('1')
 	
-	if (race.get() == 'Orc'):
+	if (race.get() == 'Orc' or race.get() == 'Human'):
 		racial1_spin.config(to=1)
 		if (int(racial1.get()) > 1):
 			racial1.set('1')
@@ -2399,13 +2423,13 @@ def depend_check():
 	
 	# Production
 	
-	if (alchemy.get() == '1'):
+	if (alchemy.get() == '10'):
 		chemistry_spin.config(state='active')
 	else:
 		chemistry.set('0')
 		chemistry_spin.config(state='disabled')
 		
-	if (blacksmith.get() == '1'):
+	if (blacksmith.get() == '10'):
 		artifice_spin.config(state='active')
 	else:
 		artifice.set('0')
@@ -2622,6 +2646,11 @@ def depend_check():
 		dodge.set(crt_grp + crt_spc + feint)
 		
 	# Frag
+	
+	if (paragon.get() == '1'):
+		paragon_level_spin.grid()
+	else:
+		paragon_level_spin.grid_remove()
 	
 	if ((int(trapper.get()) > 4 and school_current.get() == 'Rogue') or school_current.get() != 'Rogue'):
 		frag2_spin.config(state='active')
@@ -2859,6 +2888,7 @@ def change_occupation(*args):
 	
 def set_racials (var_race):
 	racial_purch_name.set(racial_purchasable_names[var_race])
+	racial_auto_name.set(racial_auto_names[var_race])
 
 def change_race(*args):	
 	if (race.get() == "Einher"):
@@ -2871,7 +2901,7 @@ def change_race(*args):
 		lbl_str.set('Strength Bonus')
 		racial_str_cstvar.set('50')
 		
-	elif (race.get() == "Gargylen" or race.get() == "Human" or race.get() == "Wild Elf"):
+	elif (race.get() == "Gargylen" or race.get() == "Wild Elf"):
 		racial_bpb_spin.grid()
 		lbl_bpb.set('Body Point Bonus')
 		racial_bpb_cstvar.set('50')
@@ -2902,21 +2932,13 @@ def change_race(*args):
 	if (race.get() == "FRAG" and frag_race.get() == "0"):
 		frag_race.set("Am'Rath")
 		set_racials("Am'Rath")
-		racial1_cstvar.set('50')
-		racial1_spin.grid()
 	elif (race.get() == "FRAG"):
 		set_racials(frag_race.get())
-		racial1_cstvar.set('50')
-		racial1_spin.grid()
 	else:
 		frag_race.set('0')
 		set_racials(race.get())
-		racial1_cstvar.set('50')
-		racial1_spin.grid()
-		if (race.get() == "Human"):
-			racial1_cstvar.set('')
-			racial1_spin.grid_remove()
-			
+	
+	set_CP_and_health(blankets.get())
 	calc_spent_cp()
 			
 def set_skill_costs(var_occupation):
@@ -3138,6 +3160,10 @@ def set_CP_and_health (num_blankets):
 		CP.set(blanketconversion_dict[str(num_blankets)])
 	else:
 		CP.set(str(1760 + 10 * (num_blankets - 93)))
+		
+	if (race.get() == 'Human'):
+		CP.set(int(CP.get()) + 150)
+		
 	CP_free.set(int(CP.get())-int(CP_spent.get()))
 	level.set(int((int(CP.get())-50)/100))
 	
@@ -3175,7 +3201,9 @@ def set_CP_and_health (num_blankets):
 
 def set_skill_list(*args):
 	skill_list_str = ''
-		
+	
+	skill_list_str = skill_list_str + racial_auto_name.get()
+	
 	if (int(occupational1.get()) > 0):
 		skill_list_str = skill_list_str + "\n" + occup_1_name.get() + " x" + occupational1.get()+ '	' + str(int(occupational1_cstvar.get()) * int(occupational1.get()))
 	if (int(occupational2.get()) > 0):
@@ -3184,12 +3212,12 @@ def set_skill_list(*args):
 		skill_list_str = skill_list_str + "\n" + occup_3_name.get() + " x" + occupational3.get()+ '	' + str(int(occupational3_cstvar.get()) * int(occupational3.get()))
 	if (int(occupational4.get()) > 0):
 		skill_list_str = skill_list_str + "\n" + occup_4_name.get() + " x" + occupational4.get()+ '	' + str(int(occupational4_cstvar.get()) * int(occupational4.get()))
-	if (int(racial1.get()) > 0):
-		skill_list_str = skill_list_str + "\n" + racial_purch_name.get() + " x" + racial1.get()+ '	' + str(int(racial1_cstvar.get()) * int(racial1.get()))
-	if (racial_bpb.get() != '' and racial_bpb_cstvar.get () != ''):
-		print (racial_bpb.get())
+	if (race.get() != 'Human'):
+		if (int(racial1.get()) > 0):
+			skill_list_str = skill_list_str + "\n" + racial_purch_name.get() + " x" + racial1.get()+ '	' + str(int(racial1_cstvar.get()) * int(racial1.get()))
+	if (racial_bpb.get() != '' and racial_bpb_cstvar.get () != '' and racial_bpb.get() != '0'):
 		skill_list_str = skill_list_str + "\nBody Point Bonus x" + racial_bpb.get()+ '	' + str(int(racial_bpb_cstvar.get()) * int(racial_bpb.get()))
-	if (racial_str.get() != '' and racial_str_cstvar.get () != ''):
+	if (racial_str.get() != '' and racial_str_cstvar.get () != '' and racial_str.get() != '0'):
 		skill_list_str = skill_list_str + "\nStrength Bonus x" + racial_str.get()+ '	' + str(int(racial_str_cstvar.get()) * int(racial_str.get()))
 		
 	if (int(alchemy.get()) > 0):
@@ -3370,7 +3398,7 @@ def set_skill_list(*args):
 			skill_list_str = skill_list_str + "\nSpell Versatility 9 x" + versa9.get() + '	' + str(int(versa9_cstvar.get()) * int(versa9.get()))
 		
 	try:
-		skill_list_str = skill_list_str[1:]
+		skill_list_str = skill_list_str[0:]
 		all_skills['state'] = 'normal'
 		all_skills.delete('1.0', 'end -1 chars')
 		all_skills.insert('0.0 -1 chars', skill_list_str)
@@ -3451,7 +3479,6 @@ def calc_spent_cp(*args):
 	spent_CP = spent_CP + int(hindsight.get()) * int(hindsight_cstvar.get())
 	spent_CP = spent_CP + int(looting.get()) * int(looting_cstvar.get())
 	spent_CP = spent_CP + int(intuition.get()) * int(intuition_cstvar.get())
-	spent_CP = spent_CP + int(paragon.get()) * int(paragon_cstvar.get())
 	spent_CP = spent_CP + int(possum.get()) * int(possum_cstvar.get())
 	spent_CP = spent_CP + int(teacher.get()) * int(teacher_cstvar.get())
 	spent_CP = spent_CP + int(frag1.get()) * int(frag1_cstvar.get())
@@ -3460,6 +3487,22 @@ def calc_spent_cp(*args):
 	spent_CP = spent_CP + int(frag4.get()) * int(frag4_cstvar.get())
 	spent_CP = spent_CP + int(frag5.get()) * int(frag5_cstvar.get())
 	spent_CP = spent_CP + int(frag6.get()) * int(frag6_cstvar.get())
+	
+	if (int(paragon_level.get()) == 1):
+		paragon_cstvar.set(int(slot1_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 2):
+		paragon_cstvar.set(int(slot2_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 3):
+		paragon_cstvar.set(int(slot3_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 4):
+		paragon_cstvar.set(int(slot4_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 5):
+		paragon_cstvar.set(int(slot5_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 6):
+		paragon_cstvar.set(int(slot6_cstvar.get()) + 10)
+	elif (int(paragon_level.get()) == 7):
+		paragon_cstvar.set(int(slot7_cstvar.get()) + 10)
+	spent_CP = spent_CP + int(paragon.get()) * int(paragon_cstvar.get())
 	
 	school = StringVar()
 	if (occupation.get() == 'RENOWNED'):
@@ -3591,6 +3634,7 @@ def reset ():
 	looting.set('0')
 	intuition.set('0')
 	paragon.set('0')
+	paragon_level.set('1')
 	possum.set('0')
 	teacher.set('0')
 	frag1.set('0')
@@ -3722,6 +3766,7 @@ blanket_spin = ttk.Spinbox(blanketframe_left, from_=0, to=400, width=6, textvari
 blanket_spin.grid(column=0, row=1, sticky=W)
 blanket_spin.bind("<<Increment>>", change_blankets_up)
 blanket_spin.bind("<<Decrement>>", change_blankets_down)
+blanket_spin.bind('<Return>', change_blankets_manual)
 
 ttk.Label(blanketframe_left, text='CP', font=boldfont).grid(column=1, row=0, sticky=W)
 CP_entry = ttk.Entry(blanketframe_left, width=7, textvariable=CP, font=normalfont)
@@ -3794,6 +3839,7 @@ trapper_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textvar
 trapper_spin.grid(column=2, row=1, sticky=W)
 trapper_spin.bind("<<Increment>>", trapper_up)
 trapper_spin.bind("<<Decrement>>", trapper_down)
+trapper_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_general, text='Create Scroll', font=normalfont).grid(column=3, padx=(3,3), row=1, sticky=W)
 ttk.Label(skillsframe_general, textvariable=create_scroll_cstvar, font=normalfont).grid(column=4, row=1, padx=(3,3), sticky=E)
@@ -3801,6 +3847,7 @@ create_scroll_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, t
 create_scroll_spin.grid(column=5, row=1, sticky=W)
 create_scroll_spin.bind("<<Increment>>", create_scroll_up)
 create_scroll_spin.bind("<<Decrement>>", create_scroll_down)
+create_scroll_spin.bind('<Return>', calc_spent_cp)
 create_scroll_spin.state(['disabled'])
 
 ttk.Label(skillsframe_general, text='Tradesman', font=normalfont).grid(column=6, padx=(3,3), row=1, sticky=W)
@@ -3809,6 +3856,7 @@ tradesman_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textv
 tradesman_spin.grid(column=8, row=1, sticky=W)
 tradesman_spin.bind("<<Increment>>", tradesman_up)
 tradesman_spin.bind("<<Decrement>>", tradesman_down)
+tradesman_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_general, text='Alchemy', font=normalfont).grid(column=0, row=2, sticky=W)
 ttk.Label(skillsframe_general, textvariable=alchemy_cstvar, font=normalfont).grid(column=1, row=2, padx=(3,3), sticky=E)
@@ -3816,6 +3864,7 @@ alchemy_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textvar
 alchemy_spin.grid(column=2, row=2, sticky=W)
 alchemy_spin.bind("<<Increment>>", alchemy_up)
 alchemy_spin.bind("<<Decrement>>", alchemy_down)
+alchemy_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_general, text='Blacksmith', font=normalfont).grid(column=3, padx=(3,3), row=2, sticky=W)
 ttk.Label(skillsframe_general, textvariable=blacksmith_cstvar, font=normalfont).grid(column=4, row=2, padx=(3,3), sticky=E)
@@ -3823,6 +3872,7 @@ blacksmith_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, text
 blacksmith_spin.grid(column=5, row=2, sticky=W)
 blacksmith_spin.bind("<<Increment>>", blacksmith_up)
 blacksmith_spin.bind("<<Decrement>>", blacksmith_down)
+blacksmith_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_general, text='Chemistry', font=normalfont).grid(column=0, row=3, sticky=W)
 ttk.Label(skillsframe_general, textvariable=chemistry_cstvar, font=normalfont).grid(column=1, row=3, padx=(3,3), sticky=E)
@@ -3830,6 +3880,7 @@ chemistry_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textv
 chemistry_spin.grid(column=2, row=3, sticky=W)
 chemistry_spin.bind("<<Increment>>", chemistry_up)
 chemistry_spin.bind("<<Decrement>>", chemistry_down)
+chemistry_spin.bind('<Return>', calc_spent_cp)
 chemistry_spin.state(['disabled'])
 
 ttk.Label(skillsframe_general, text='Artifice', font=normalfont).grid(column=3, padx=(3,3), row=3, sticky=W)
@@ -3838,6 +3889,7 @@ artifice_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textva
 artifice_spin.grid(column=5, row=3, sticky=W)
 artifice_spin.bind("<<Increment>>", artifice_up)
 artifice_spin.bind("<<Decrement>>", artifice_down)
+artifice_spin.bind('<Return>', calc_spent_cp)
 artifice_spin.state(['disabled'])
 
 # Occupation and Race
@@ -3851,6 +3903,7 @@ occupational1_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, t
 occupational1_spin.grid(column=2, row=5, sticky=W)
 occupational1_spin.bind("<<Increment>>", occupational1_up)
 occupational1_spin.bind("<<Decrement>>", occupational1_down)
+occupational1_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_general, textvariable=occupational2_cstvar, font=normalfont).grid(column=4, row=5, padx=(3,3), sticky=E)
 ttk.Label(skillsframe_general, textvariable=occup_2_name, font=normalfont).grid(column=3, row=5, sticky=W, padx=(3,3))
@@ -3858,6 +3911,7 @@ occupational2_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, t
 occupational2_spin.grid(column=5, row=5, sticky=W)
 occupational2_spin.bind("<<Increment>>", occupational2_up)
 occupational2_spin.bind("<<Decrement>>", occupational2_down)
+occupational2_spin.bind('<Return>', calc_spent_cp)
 occupational2_spin.state(['disabled'])
 
 ttk.Label(skillsframe_general, textvariable=occupational3_cstvar, font=normalfont).grid(column=1, row=6, padx=(3,3), sticky=E)
@@ -3866,6 +3920,7 @@ occupational3_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, t
 occupational3_spin.grid(column=2, row=6, sticky=W)
 occupational3_spin.bind("<<Increment>>", occupational3_up)
 occupational3_spin.bind("<<Decrement>>", occupational3_down)
+occupational3_spin.bind('<Return>', calc_spent_cp)
 occupational3_spin.state(['disabled'])
 
 ttk.Label(skillsframe_general, textvariable=occupational4_cstvar, font=normalfont).grid(column=4, row=6, padx=(3,3), sticky=E)
@@ -3874,6 +3929,7 @@ occupational4_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, t
 occupational4_spin.grid(column=5, row=6, sticky=W)
 occupational4_spin.bind("<<Increment>>", occupational4_up)
 occupational4_spin.bind("<<Decrement>>", occupational4_down)
+occupational4_spin.bind('<Return>', calc_spent_cp)
 occupational4_spin.state(['disabled'])
 
 ttk.Label(skillsframe_general, textvariable=racial1_cstvar, font=normalfont).grid(column=7, row=5, padx=(3,3),sticky=E)
@@ -3897,7 +3953,6 @@ racial_str_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textv
 racial_str_spin.grid(column=11, row=6, sticky=W)
 racial_str_spin.bind("<<Increment>>", racial_str_up)
 racial_str_spin.bind("<<Decrement>>", racial_str_down)
-racial_str_spin.grid_remove()
 
 # Frag
 
@@ -3958,6 +4013,13 @@ paragon_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvari
 paragon_spin.grid(column=8, row=9, sticky=W)
 paragon_spin.bind("<<Increment>>", paragon_up)
 paragon_spin.bind("<<Decrement>>", paragon_down)
+
+paragon_level_spin = ttk.Spinbox(skillsframe_general, from_=1, to=7, width=3, textvariable=paragon_level, font=normalfont)
+paragon_level_spin.grid(column=9, row=9)
+paragon_level_spin.bind("<<Increment>>", paragon_level_up)
+paragon_level_spin.bind("<<Decrement>>", paragon_level_down)
+paragon_level_spin.bind('<Return>', calc_spent_cp)
+paragon_level_spin.grid_remove()
 
 ttk.Label(skillsframe_general, text='Possum', font=normalfont).grid(column=6, row=10, padx=(3,3), sticky=W)
 ttk.Label(skillsframe_general, textvariable=possum_cstvar, font=normalfont).grid(column=7, row=10, padx=(3,3), sticky=E)
@@ -4042,6 +4104,7 @@ physician_spin = ttk.Spinbox(skillsframe_scholar, from_=0, to=10, width=3, font=
 physician_spin.grid(column=8, row=1, sticky=W)
 physician_spin.bind("<<Increment>>", physician_up)
 physician_spin.bind("<<Decrement>>", physician_down)
+physician_spin.bind('<Return>', calc_spent_cp)
 physician_spin.state(['disabled'])
 
 ttk.Label(skillsframe_scholar, text='Mysticism', font=normalfont).grid(column=0, row=2, sticky=W)
@@ -4050,6 +4113,7 @@ mysticism_spin = ttk.Spinbox(skillsframe_scholar, from_=0, to=10, width=3, font=
 mysticism_spin.grid(column=2, row=2, sticky=W)
 mysticism_spin.bind("<<Increment>>", mysticism_up)
 mysticism_spin.bind("<<Decrement>>", mysticism_down)
+mysticism_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_scholar, text='Demonic/Angelic Arts', font=normalfont).grid(column=3, row=2, padx=(3,3), sticky=W)
 ttk.Label(skillsframe_scholar, textvariable = demonic_arts_cstvar, font=normalfont).grid(column=4, row=2, padx=(3,3), sticky=E)
@@ -4265,7 +4329,6 @@ versa1_spin.bind("<<Increment>>", versa1_up)
 versa1_spin.bind("<<Decrement>>", versa1_down)
 versa1_spin.state(['disabled'])
 
-
 ttk.Label(versaframe, textvariable=versa2name, font=boldfont).grid(column=1, row=0, padx=(3,3), sticky=E)
 ttk.Label(versaframe, textvariable = versa2_cstvar, font=normalfont).grid(column=1, row=3, padx=(3,3), sticky=E)
 versa2_spin = ttk.Spinbox(versaframe, from_=0, to=10, width=2, font=normalfont, textvariable = versa2)
@@ -4355,6 +4418,7 @@ flurry_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, fo
 flurry_spin.grid(column=8, row=1, sticky=W)
 flurry_spin.bind("<<Increment>>", flurry_up)
 flurry_spin.bind("<<Decrement>>", flurry_down)
+flurry_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Heavy Armour', font=normalfont).grid(column=0, row=2, sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = heavy_armour_cstvar, font=normalfont).grid(column=1, row=2, padx=(3,3), sticky=E)
@@ -4411,6 +4475,7 @@ spec_specific_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, widt
 spec_specific_spin.grid(column=2, row=5, sticky=W)
 spec_specific_spin.bind("<<Increment>>", spec_specific_up)
 spec_specific_spin.bind("<<Decrement>>", spec_specific_down)
+spec_specific_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Spec +1: Group', font=normalfont).grid(column=3, row=5, padx=(3,3), sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = spec_group_cstvar, font=normalfont).grid(column=4, row=5, padx=(3,3), sticky=E)
@@ -4418,6 +4483,7 @@ spec_group_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3
 spec_group_spin.grid(column=5, row=5, sticky=W)
 spec_group_spin.bind("<<Increment>>", spec_group_up)
 spec_group_spin.bind("<<Decrement>>", spec_group_down)
+spec_group_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Slay/Parry', font=normalfont).grid(column=0, row=6, sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = slay_cstvar, font=normalfont).grid(column=1, row=6, padx=(3,3), sticky=E)
@@ -4425,14 +4491,16 @@ slay_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, font
 slay_spin.grid(column=2, row=6, sticky=W)
 slay_spin.bind("<<Increment>>", slay_up)
 slay_spin.bind("<<Decrement>>", slay_down)
+slay_spin.bind('<Return>', calc_spent_cp)
 slay_spin.state(['disabled'])
 
 ttk.Label(skillsframe_warrior_rogue, text='Slay/Parry: Master', font=normalfont).grid(column=3, row=6, padx=(3,3), sticky=W)
-ttk.Label(skillsframe_warrior_rogue, textvariable = heavy_armour_cstvar, font=normalfont).grid(column=4, row=6, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_warrior_rogue, textvariable = slay_master_cstvar, font=normalfont).grid(column=4, row=6, padx=(3,3), sticky=E)
 slay_master_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, font=normalfont, textvariable = slay_master)
 slay_master_spin.grid(column=5, row=6, sticky=W)
 slay_master_spin.bind("<<Increment>>", slay_master_up)
 slay_master_spin.bind("<<Decrement>>", slay_master_down)
+slay_master_spin.bind('<Return>', calc_spent_cp)
 slay_master_spin.state(['disabled'])
 
 ## Skill Labels (Rogue)
@@ -4445,6 +4513,7 @@ dodge_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, fon
 dodge_spin.grid(column=2, row=8, sticky=W)
 dodge_spin.bind("<<Increment>>", dodge_up)
 dodge_spin.bind("<<Decrement>>", dodge_down)
+dodge_spin.bind('<Return>', calc_spent_cp)
 dodge_spin.state(['disabled'])
 
 ttk.Label(skillsframe_warrior_rogue, text='Garrotte', font=normalfont).grid(column=3, row=8, padx=(3,3), sticky=W)
@@ -4460,6 +4529,7 @@ sap_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, font=
 sap_spin.grid(column=8, row=8, sticky=W)
 sap_spin.bind("<<Increment>>", sap_up)
 sap_spin.bind("<<Decrement>>", sap_down)
+sap_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Vital Blow', font=normalfont).grid(column=0, row=9, sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = vitalblow_cstvar, font=normalfont).grid(column=1, row=9, padx=(3,3), sticky=E)
@@ -4467,6 +4537,7 @@ vitalblow_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3,
 vitalblow_spin.grid(column=2, row=9, sticky=W)
 vitalblow_spin.bind("<<Increment>>", vitalblow_up)
 vitalblow_spin.bind("<<Decrement>>", vitalblow_down)
+vitalblow_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Critical +2: Specific', font=normalfont).grid(column=0, row=10, sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = crit_spec_cstvar, font=normalfont).grid(column=1, row=10, padx=(3,3), sticky=E)
@@ -4474,6 +4545,7 @@ crit_spec_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3,
 crit_spec_spin.grid(column=2, row=10, sticky=W)
 crit_spec_spin.bind("<<Increment>>", crit_spec_up)
 crit_spec_spin.bind("<<Decrement>>", crit_spec_down)
+crit_spec_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Critical +2: Group', font=normalfont).grid(column=3, row=10, padx=(3,3), sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = crit_group_cstvar, font=normalfont).grid(column=4, row=10, padx=(3,3), sticky=E)
@@ -4481,6 +4553,7 @@ crit_group_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3
 crit_group_spin.grid(column=5, row=10, sticky=W)
 crit_group_spin.bind("<<Increment>>", crit_group_up)
 crit_group_spin.bind("<<Decrement>>", crit_group_down)
+crit_group_spin.bind('<Return>', calc_spent_cp)
 
 ttk.Label(skillsframe_warrior_rogue, text='Execute', font=normalfont).grid(column=0, row=11, sticky=W)
 ttk.Label(skillsframe_warrior_rogue, textvariable = execute_cstvar, font=normalfont).grid(column=1, row=11, padx=(3,3), sticky=E)
@@ -4488,6 +4561,7 @@ execute_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, width=3, f
 execute_spin.grid(column=2, row=11, sticky=W)
 execute_spin.bind("<<Increment>>", execute_up)
 execute_spin.bind("<<Decrement>>", execute_down)
+execute_spin.bind('<Return>', calc_spent_cp)
 execute_spin.state(['disabled'])
 
 ttk.Label(skillsframe_warrior_rogue, text='Execute: Master', font=normalfont).grid(column=3, row=11, padx=(3,3), sticky=W)
@@ -4496,6 +4570,7 @@ execute_master_spin = ttk.Spinbox(skillsframe_warrior_rogue, from_=0, to=10, wid
 execute_master_spin.grid(column=5, row=11, sticky=W)
 execute_master_spin.bind("<<Increment>>", execute_master_up)
 execute_master_spin.bind("<<Decrement>>", execute_master_down)
+execute_master_spin.bind('<Return>', calc_spent_cp)
 execute_master_spin.state(['disabled'])
 
 ##### Initial setup
