@@ -1,0 +1,11 @@
+To start the Character Builder, unzip the "Underworld Character Builder.zip" file. Then click the link that says "Underworld Character Builder". If that doesn't work, go to the folder and double click on the "Character Builder.exe" application.
+
+If you find any bugs, you can PM me on Discord (Mercy #8992). Please don't PM me for rulebook stuff, just Character Builder stuff.
+
+If you're interested in checking out the code/updating it yourself, it's on GitHub at: https://github.com/TheRogueHutchinson/Underworld-Character-Builder.
+
+Thanks to Todd W. for writing the original Character Builder. RIP Visual Basic.
+
+Enjoy!
+
+Cat
