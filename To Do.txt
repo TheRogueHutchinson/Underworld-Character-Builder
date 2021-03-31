@@ -1,5 +1,6 @@
 Requests
 - Add multiple selection dropdowns (radials) to allow selection of multiple sphere 3s, specs, etc.
+- Let people remove spell slots instead of starting from scratch
 - Add frags
 - Work with Apple
 - Work with mobile

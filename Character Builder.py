@@ -3209,7 +3209,9 @@ def set_CP_and_health (num_blankets):
 		HP.set(int(HP.get()) + int(racial_bpb.get()) * 5)
 	if (race.get() == 'Human' or race.get() == 'Mountain Dwarf'):
 		HP.set(int(HP.get()) + int(racial1.get()) * 5)
-			
+	if (race.get() == 'FRAG' and frag_race.get() == 'Ogre'):
+		HP.set(int(HP.get()) + 5 + ((int(level.get()) - 1 ) * 2))
+
 	if (int(CP_free.get()) < 0):
 		CP_free_entry.config(foreground='red', font=boldfont)
 	elif (int(CP_free.get()) > 0):
