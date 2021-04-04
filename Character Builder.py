@@ -546,18 +546,22 @@ def occupational1_up(event):
 	if (int(occupational1.get()) != 10):
 		occupational1.set(int(occupational1.get())+1)
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 		occupational1.set(int(occupational1.get())-1)
 	else:
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 
 def occupational1_down(event):
 	if (int(occupational1.get()) != 0):
 		occupational1.set(int(occupational1.get())-1)
 		calc_spent_cp()
+		set_CP_and_health(int(blankets.get()))
 		occupational1.set(int(occupational1.get())+1)
 	else:
 		calc_spent_cp()
-		
+		set_CP_and_health(int(blankets.get()))
+
 def occupational2_up(event):
 	if (int(occupational2.get()) != 10):
 		occupational2.set(int(occupational2.get())+1)
@@ -3211,6 +3215,9 @@ def set_CP_and_health (num_blankets):
 		HP.set(int(HP.get()) + int(racial1.get()) * 5)
 	if (race.get() == 'FRAG' and frag_race.get() == 'Ogre'):
 		HP.set(int(HP.get()) + 5 + ((int(level.get()) - 1 ) * 2))
+		
+	if (occupation.get() == 'RENOWNED' and (renowned_occupation.get() == 'Paladin' or renowned_occupation.get() == 'Dread Knight')):
+		HP.set(int(HP.get()) + 3 * int(occupational1.get()))
 
 	if (int(CP_free.get()) < 0):
 		CP_free_entry.config(foreground='red', font=boldfont)
