@@ -3181,11 +3181,11 @@ def set_CP_and_health (num_blankets):
 	else:
 		CP.set(str(1760 + 10 * (num_blankets - 93)))
 		
-	if (race.get() == 'Human'):
-		CP.set(int(CP.get()) + 50)
-		
 	CP_free.set(int(CP.get())-int(CP_spent.get()))
 	level.set(int((int(CP.get())-50)/100))
+	
+	if (race.get() == 'Human'):
+		CP.set(int(CP.get()) + 50)
 	
 	school = StringVar()
 	if (occupation.get() == 'RENOWNED'):
