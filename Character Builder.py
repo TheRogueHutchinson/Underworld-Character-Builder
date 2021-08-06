@@ -2414,6 +2414,27 @@ def depend_check():
 		racial1_spin.config(to = (int(level.get()) + 1) / 2)
 		racial1.set(int((int(level.get()) + 1) / 2))
 		
+		
+	# Occupation and Race
+	
+	if (int(occupational1.get()) > 0):
+		occupational2_spin.config(state='active')
+	else:
+		occupational2.set('0')
+		occupational2_spin.config(state='disabled')
+	
+	if (int(occupational2.get()) > 0):
+		occupational3_spin.config(state='active')
+	else:
+		occupational3.set('0')
+		occupational3_spin.config(state='disabled')
+	
+	if (int(occupational3.get()) > 0):
+		occupational4_spin.config(state='active')
+	else:
+		occupational4.set('0')
+		occupational4_spin.config(state='disabled')
+		
 	# Occupationals
 	
 	if ((occupation.get() == 'Druid' and vocation.get() == '0') or vocation.get() == 'Brew Master' or vocation.get() == 'Undead Hunter'):
@@ -2436,6 +2457,30 @@ def depend_check():
 			occupational4.set('1')
 	else:
 		occupational4_spin.config(to=10)
+		
+	if (int(level.get()) < 3):
+		occupational1.set('0')
+		occupational1_spin.config(state='disabled')
+	else:
+		occupational1_spin.config(state='active')
+		
+	if (int(level.get()) < 6):
+		occupational2.set('0')
+		occupational2_spin.config(state='disabled')
+	else:
+		occupational2_spin.config(state='active')
+		
+	if (int(level.get()) < 9):
+		occupational3.set('0')
+		occupational3_spin.config(state='disabled')
+	else:
+		occupational3_spin.config(state='active')
+		
+	if (int(level.get()) < 12):
+		occupational4.set('0')
+		occupational4_spin.config(state='disabled')
+	else:
+		occupational4_spin.config(state='active')
 	
 	# Production
 	
@@ -2456,26 +2501,6 @@ def depend_check():
 	else:
 		create_scroll.set('0')
 		create_scroll_spin.config(state='disabled')
-		
-	# Occupation and Race
-	
-	if (int(occupational1.get()) > 0):
-		occupational2_spin.config(state='active')
-	else:
-		occupational2.set('0')
-		occupational2_spin.config(state='disabled')
-	
-	if (int(occupational2.get()) > 0):
-		occupational3_spin.config(state='active')
-	else:
-		occupational3.set('0')
-		occupational3_spin.config(state='disabled')
-	
-	if (int(occupational3.get()) > 0):
-		occupational4_spin.config(state='active')
-	else:
-		occupational4.set('0')
-		occupational4_spin.config(state='disabled')
 	
 	# Scholar
 	
@@ -3180,12 +3205,12 @@ def set_CP_and_health (num_blankets):
 		CP.set(blanketconversion_dict[str(num_blankets)])
 	else:
 		CP.set(str(1760 + 10 * (num_blankets - 93)))
-		
-	CP_free.set(int(CP.get())-int(CP_spent.get()))
-	level.set(int((int(CP.get())-50)/100))
 	
 	if (race.get() == 'Human'):
 		CP.set(int(CP.get()) + 50)
+	
+	CP_free.set(int(CP.get())-int(CP_spent.get()))
+	level.set(int((int(CP.get())-50)/100))
 	
 	school = StringVar()
 	if (occupation.get() == 'RENOWNED'):
