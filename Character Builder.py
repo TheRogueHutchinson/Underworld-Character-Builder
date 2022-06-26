@@ -14,22 +14,40 @@ root.title("Underworld Character Builder (Unofficial)")
 
 # Racial Names
 
-racial_purchasable_names = {"Savar'Aving" : "Cat-Like Reflexes",
+racial_purchasable_names = { "Savar'Aving" : "Cat-Like Reflexes",
 	"Gargylen" : "Stone Skin", "Mountain Dwarf" : "Body Point Bonus", 
-	"Dark Elf" : "Spite Blood", "High Elf" : "Resist Psionics", "Wild Elf" : "Nature's Cache", "Wood Fae" : "Charm Break", "Orc" : "Orcish Constitution", "Ajaunti" : "Ancestor's Wisdom", "Einher" : "Berserker Rage", "Hobling" : "Racial Dodge", "Human" : "Body Point Bonus", "Am'Rath" : "Clobber", "Faun" : "Forest Revival", "Minotaur" : "Fae Ward", "Kobold" : "KABOOM!", 
-	"Ogre" : "Ogre Smash", "Squamata" : "Tongue Pierce", "Avian" : "Create Goggles", "Draconian" : "Reflect Divine", "Fire Elf" : "Endurance", "Goblin" : "Amorphic Mucus", "Risen" : "Spirit Skinning", "Wolven" : "Natural Hide", "Carnal Fae" : "Resist Magic Greater", "Faceless" : "Unmasked", "Gnome" : "Gnomish Device", "Ice Elf" : "Memories in Flesh", 
-	"Sidhe" : "Magic Echo", "Vulcan Dwarf" : "Endure Fire" }
+	"Dark Elf" : "Spite Blood", "High Elf" : "Resist Psionics", "Wild Elf" : "Nature's Cache", 
+	"Wood Fae" : "Charm Break", "Orc" : "Orcish Constitution", "Ajaunti" : "Ancestor's Wisdom", 
+	"Einher" : "Berserker Rage", "Hobling" : "Racial Dodge", "Human" : "Body Point Bonus", 
+	"Am'Rath" : "Clobber", "Faun" : "Forest Revival", "Minotaur" : "Fae Ward", "Kobold" : "KABOOM!", 
+	"Ogre" : "Ogre Smash", "Squamata" : "Tongue Pierce", "Avian" : "Create Goggles", 
+	"Draconian" : "Reflect Divine", "Fire Elf" : "Endurance", "Goblin" : "Amorphic Mucus", 
+	"Risen" : "Spirit Skinning", "Wolven" : "Natural Hide", "Carnal Fae" : "Resist Magic Greater", 
+	"Faceless" : "Unmasked", "Gnome" : "Gnomish Device", "Ice Elf" : "Memories in Flesh", 
+	"Sidhe" : "Magic Echo", "Vulcan Dwarf" : "Endure Fire", "Yokai" : "Enemy of my Enemy" }
 	
-racial_auto_names = {"Savar'Aving" : "Natural Claws",
+racial_auto_names = { "Savar'Aving" : "Natural Claws",
 	"Gargylen" : "Alternative Healing", "Mountain Dwarf" : "Resist Toxin", 
-	"Dark Elf" : "Natural Chemists", "High Elf" : "Magical Aptitude", "Wild Elf" : "Chosen Enemy", "Wood Fae" : "Lust for Life", "Orc" : "Immune to Fear", "Ajaunti" : "Eyes of the Mother", "Einher" : "Resist Cold", "Hobling" : "Taunt", "Human" : "Character Point Bonus", "Am'Rath" : "Simple Weapon Damage Bonus", "Faun" : "Companion", "Minotaur" : "Enhanced Strength", 
+	"Dark Elf" : "Natural Chemists", "High Elf" : "Magical Aptitude", "Wild Elf" : "Chosen Enemy", 
+	"Wood Fae" : "Lust for Life", "Orc" : "Immune to Fear", "Ajaunti" : "Eyes of the Mother", 
+	"Einher" : "Resist Cold", "Hobling" : "Taunt", "Human" : "Character Point Bonus", 
+	"Am'Rath" : "Simple Weapon Damage Bonus", "Faun" : "Companion", "Minotaur" : "Enhanced Strength", 
 	"Kobold" : "Innate Sap", "Ogre" : "Ogre Constitution", 
 	"Squamata" : "Seal Pores", "Avian" : "Spirit Anchor",
 	"Draconian" : "Natural Threshold", "Fire Elf" : "Resist Fire", 
 	"Goblin" : "Parasites", "Risen" : "Dual Race", "Wolven" : "Sense Undead", 
 	"Carnal Fae" : "Destroy Light", "Faceless" : "Permanent Non-Detection",  
 	"Gnome" : "Scavenger", "Ice Elf" : "Scion of Suffering", 
-	"Sidhe" : "Formless Casting", "Vulcan Dwarf" : "Volcanic Skin" }
+	"Sidhe" : "Formless Casting", "Vulcan Dwarf" : "Volcanic Skin", "Yokai" : "Foxfire" }
+	
+culture_purchasable_names = { "Taliss Pride" : "Redeemer's Claws", "Obsidian Shock Troops" : "Obsidian Arms", 
+	"Clan Icebreaker" : "Ice Blade", "House Mortuus" : "Control Lesser Undead", "Domaine Magique" : "Ritual Affinity", 
+	"Kraken" : "Freedom of Movement", "House of Séasúir" : "Blessing of the Queen", "Ebon Khan" : "Brood Constitution",
+	"Clan Vinatore" : "Spirit Hook", "True Berserker" : "Berserker Poison", "Five Sons Bakery" : "Adapted Insides" }
+	
+race_to_culture_names = { "Savar'Aving" : "Taliss Pride", "Gargylen" : "Obsidian Shock Troops", "Mountain Dwarf" : "Clan Icebreaker", 
+	"Dark Elf" : "House Mortuus", "High Elf" : "Domaine Magique", "Wild Elf" : "Kraken", "Wood Fae" : "House of Séasúir",
+	"Orc" : "Ebon Khan", "Ajaunti" : "Clan Vinatore", "Einher" : "True Berserker", "Hobling" : "Five Sons Bakery" }
 	
 racial_purch_name = StringVar()
 racial_auto_name = StringVar()
@@ -39,6 +57,8 @@ lbl_bpb = StringVar()
 racial_bpb_cstvar = StringVar()
 lbl_str = StringVar()
 racial_str_cstvar = StringVar()
+
+lbl_culture = StringVar()
 
 # Overarching
 
@@ -53,6 +73,7 @@ player_name = StringVar()
 char_name = StringVar()
 race = StringVar()
 frag_race = StringVar()
+culture_on = StringVar()
 
 # Occupation Names
 
@@ -73,13 +94,15 @@ dragonknight_occupation_names = {"occ_1" : "Draconic Shrine", "occ_2" : "Draconi
 archer_occupation_names = {"occ_1" : "Arrow Dodge", "occ_2" : "Stand and Deliver", "occ_3" : "Maim", "occ_4" : "Death Arrow"}
 artisan_occupation_names = {"occ_1" : "Treasure Hunter", "occ_2" : "Bribe", "occ_3" : "Magnum Opus", "occ_4" : "Vault"}
 battlemage_occupation_names = {"occ_1" : "Amulet", "occ_2" : "Maximize", "occ_3" : "Twin Spell", "occ_4" : "Wizard Staff"}
+bountyhunter_occupation_names = {"occ_1" : "Mercy", "occ_2" : "Bola", "occ_3" : "Smoke Bomb", "occ_4" : "Impale"}
 brewmaster_occupation_names = {"occ_1" : "Iron Gut", "occ_2" : "Mixologist", "occ_3" : "Firebreathing", "occ_4" : "Drunken Master"}
+conqueror_occupation_names = {"occ_1" : "Cleave", "occ_2" : "Ego Armour", "occ_3" : "Breakthrough", "occ_4" : "Rallying Cry"}
 shaman_occupation_names = {"occ_1" : "Rite of Weaving/Unweaving", "occ_2" : "Rite of War", "occ_3" : "Rite of Vision", "occ_4" : "Rite of the Monolith"}
 stalwart_occupation_names = {"occ_1" : "Shield Parry", "occ_2" : "Conviction", "occ_3" : "Fortress", "occ_4" : "Imbue Shield"}
 swashbuckler_occupation_names = {"occ_1" : "Finesse", "occ_2" : "En Garde!", "occ_3" : "Prise de Fer", "occ_4" : "Aegis"}
 unhunter_occupation_names = {"occ_1" : "Hunter's Focus", "occ_2" : "Hunter's Attrition", "occ_3" : "Crystal of Light", "occ_4" : "Final Rest"}
 
-occupation_dictionary = {"Mercenary" : merc_occupation_names, "Ranger" : ranger_occupation_names, "Templar" : templar_occupation_names, "Assassin" : assassin_occupation_names, "Nightblade" : nightblade_occupation_names, "Witch Hunter" : witchhunter_occupation_names, "Druid" : druid_occupation_names, "Mage" : mage_occupation_names, "Bard" : bard_occupation_names, "Dread Knight" : dreadknight_occupation_names, "Paladin" : paladin_occupation_names, "Darkweaver" : darkweaver_occupation_names, "Lightweaver" : lightweaver_occupation_names, "Dragon Knight" : dragonknight_occupation_names, "Archer" : archer_occupation_names, "Artisan" : artisan_occupation_names, "Battle Mage" : battlemage_occupation_names, "Brew Master" : brewmaster_occupation_names, "Shaman" : shaman_occupation_names, "Stalwart" : stalwart_occupation_names, "Swashbuckler" : swashbuckler_occupation_names, "Undead Hunter" : unhunter_occupation_names}
+occupation_dictionary = {"Mercenary" : merc_occupation_names, "Ranger" : ranger_occupation_names, "Templar" : templar_occupation_names, "Assassin" : assassin_occupation_names, "Nightblade" : nightblade_occupation_names, "Witch Hunter" : witchhunter_occupation_names, "Druid" : druid_occupation_names, "Mage" : mage_occupation_names, "Bard" : bard_occupation_names, "Dread Knight" : dreadknight_occupation_names, "Paladin" : paladin_occupation_names, "Darkweaver" : darkweaver_occupation_names, "Lightweaver" : lightweaver_occupation_names, "Dragon Knight" : dragonknight_occupation_names, "Archer" : archer_occupation_names, "Artisan" : artisan_occupation_names, "Battle Mage" : battlemage_occupation_names, "Bounty Hunter" : bountyhunter_occupation_names, "Brew Master" : brewmaster_occupation_names, "Conqueror" : conqueror_occupation_names, "Shaman" : shaman_occupation_names, "Stalwart" : stalwart_occupation_names, "Swashbuckler" : swashbuckler_occupation_names, "Undead Hunter" : unhunter_occupation_names}
 
 occupation_school = {"Mercenary" : "Warrior", "Templar" : "Warrior", "Ranger" : "Warrior", "Dread Knight" : "Warrior", "Paladin" : "Warrior", "Assassin" : "Rogue", "Witch Hunter" : "Rogue", "Nightblade" : "Rogue", "Mage" : "Scholar", "Bard" : "Scholar", "Druid" : "Scholar", "Dragon Knight" : "Scholar", "Lightweaver" : "Scholar", "Darkweaver" : "Scholar"}
 
@@ -1782,6 +1805,7 @@ def savefile():
 	text_to_file = text_to_file + "\n'player_name': '" + player_name.get() + "',"
 	text_to_file = text_to_file + "\n'char_name': '" + char_name.get() + "',"
 	text_to_file = text_to_file + "\n'race': '" + race.get() + "',"
+	text_to_file = text_to_file + "\n'culture_on': '" + culture_on.get() + "',"
 	text_to_file = text_to_file + "\n'frag_race': '" + frag_race.get() + "',"
 
 	text_to_file = text_to_file + "\n'blankets': '" + blankets.get() + "',"
@@ -1913,6 +1937,7 @@ def openfile():
 	player_name.set(file_dict['player_name'])
 	char_name.set(file_dict['char_name'])
 	race.set(file_dict['race'])
+	culture_on.set(file_dict['culture_on'])
 	frag_race.set(file_dict['frag_race'])
 
 	blankets.set(file_dict['blankets'])
@@ -2041,6 +2066,8 @@ def savetext():
 	text_to_file = 'Player: ' + player_name.get()
 	text_to_file = text_to_file + "\n" + "Character: " + char_name.get()
 	text_to_file = text_to_file + "\n" + "Race: " + race.get()
+	if (culture_on.get() == '1'):
+		text_to_file = text_to_file + "\n" + "Culture: " + race_to_culture_names[race.get()]
 	
 	if (occupation.get() == "RENOWNED"):
 		text_to_file = text_to_file + "\n" + "Occupation: " + renowned_occupation.get()
@@ -2394,6 +2421,8 @@ def depend_check():
 		racial_bpb_spin.config(to=2)
 		if (int(racial_bpb.get()) > 2):
 			racial_bpb.set('2')
+	elif (race.get() == 'Mountain Dwarf' and culture_on.get() == '1'):
+		racial1_spin.config(to=10)
 	elif (race.get() == 'Mountain Dwarf'):
 		racial1_spin.config(to=3)
 		if (int(racial1.get()) > 3):
@@ -2437,7 +2466,7 @@ def depend_check():
 		
 	# Occupationals
 	
-	if ((occupation.get() == 'Druid' and vocation.get() == '0') or vocation.get() == 'Brew Master' or vocation.get() == 'Undead Hunter'):
+	if ((occupation.get() == 'Druid' and vocation.get() == '0') or vocation.get() == 'Bounty Hunter' or vocation.get() == 'Brew Master' or vocation.get() == 'Undead Hunter'):
 		occupational1_spin.config(to=1)
 		if (int(occupational1.get()) > 1):
 			occupational1.set('1')
@@ -2693,11 +2722,7 @@ def depend_check():
 	else:
 		paragon_level_spin.grid_remove()
 	
-	if ((int(trapper.get()) > 4 and school_current.get() == 'Rogue') or school_current.get() != 'Rogue'):
-		frag2_spin.config(state='active')
-	else:
-		frag2_spin.set('0')
-		frag2_spin.config(state='disabled')
+	frag2_spin.config(state='active')
 	
 	if (school_current.get() == 'Warrior'):
 		if (int(slay.get()) + int(slay_master.get()) == 0):
@@ -2851,9 +2876,11 @@ def change_occupation(*args):
 	elif (vocation_on.get()== '1'):
 		if (occupation.get() == "RENOWNED"):
 			renowned_occupation_box.grid()
+			set_skill_costs(renowned_occupation.get())
 			favoured.set('1')
 		else:
 			renowned_occupation_box.grid_remove()
+			set_skill_costs(occupation.get())
 			favoured.set('0')
 		vocation_box.grid()
 		if (vocation.get() == '0'):
@@ -2928,10 +2955,24 @@ def change_occupation(*args):
 	set_skill_list()
 	
 def set_racials (var_race):
-	racial_purch_name.set(racial_purchasable_names[var_race])
+	if (culture_on.get() == '1'):
+		racial_purch_name.set(culture_purchasable_names[race_to_culture_names[var_race]])
+	else:
+		racial_purch_name.set(racial_purchasable_names[var_race])
 	racial_auto_name.set(racial_auto_names[var_race])
 
 def change_race(*args):	
+	if (race.get() == "FRAG" or race.get() == "Human"):
+		culture_check.grid_remove()
+		culture_on.set('0')
+	else:
+		culture_check.grid()
+		
+	if (culture_on.get() == '1'):
+		lbl_culture.set(race_to_culture_names[race.get()])
+	else:
+		lbl_culture.set('')
+	
 	if (race.get() == "Einher"):
 		racial_bpb_spin.grid()
 		
@@ -3204,7 +3245,7 @@ def set_CP_and_health (num_blankets):
 	if (int(num_blankets) < 94):
 		CP.set(blanketconversion_dict[str(num_blankets)])
 	else:
-		CP.set(str(1760 + 10 * (num_blankets - 93)))
+		CP.set(str(1760 + 10 * (int(num_blankets) - 93)))
 	
 	if (race.get() == 'Human'):
 		CP.set(int(CP.get()) + 50)
@@ -3607,6 +3648,7 @@ def reset ():
 	occupation.set('Mercenary')
 	renowned_occupation.set('Dread Knight')
 	vocation.set('0')
+	culture_on.set('0')
 	frag_race.set('0')
 	level.set('1')
 	
@@ -3783,14 +3825,19 @@ race_box.bind("<<ComboboxSelected>>", change_race)
 frag_race_box = ttk.Combobox(leftframe, width=20, textvariable=frag_race, font=normalfont)
 frag_race_box.grid(column=1, row=5, sticky=W)
 frag_race_box.state(["readonly"])
-frag_race_box['values'] = ("Am'Rath", 'Avian', 'Carnal Fae', 'Draconian', 'Faceless', 'Faun', 'Fire Elf', 'Gnome', 'Goblin', 'Ice Elf', 'Kobold', 'Minotaur', 'Ogre', 'Risen', 'Sidhe', 'Squamata', 'Vulcan Dwarf', 'Wolven')
+frag_race_box['values'] = ("Am'Rath", 'Avian', 'Carnal Fae', 'Draconian', 'Faceless', 'Faun', 'Fire Elf', 'Gnome', 'Goblin', 'Ice Elf', 'Kobold', 'Minotaur', 'Ogre', 'Risen', 'Sidhe', 'Squamata', 'Vulcan Dwarf', 'Wolven', 'Yokai')
 frag_race_box.grid_remove()
 
 frag_race_box.bind("<<ComboboxSelected>>", change_race)
 
-ttk.Label(leftframe, text='Class', font=boldfont).grid(column=0, row=6, sticky=W)
+culture_check = ttk.Checkbutton(leftframe, text='Culture?', command=change_race, variable=culture_on)
+culture_check.grid(column=0, row=6, sticky=W)
+
+ttk.Label(leftframe, textvariable=lbl_culture, font=normalfont).grid(column=1, row=6, sticky=W)
+
+ttk.Label(leftframe, text='Class', font=boldfont).grid(column=0, row=7, sticky=W)
 occupation_box = ttk.Combobox(leftframe, width=20, textvariable=occupation, font=normalfont)
-occupation_box.grid(column=0, row=7, sticky=W)
+occupation_box.grid(column=0, row=8, sticky=W)
 occupation_box.state(["readonly"])
 occupation_box['values'] = ('Mercenary', 'Ranger', 'Templar', 'Nightblade', 'Assassin', 'Witch Hunter', 'Mage', 'Druid', 'Bard', 'RENOWNED')
 occupation.set('Mercenary')
@@ -3798,7 +3845,7 @@ occupation.set('Mercenary')
 occupation_box.bind("<<ComboboxSelected>>", change_occupation)
 
 renowned_occupation_box = ttk.Combobox(leftframe, width=20, textvariable=renowned_occupation, font=normalfont)
-renowned_occupation_box.grid(column=1, row=7, sticky=W)
+renowned_occupation_box.grid(column=1, row=8, sticky=W)
 renowned_occupation_box.state(["readonly"])
 renowned_occupation_box['values'] = ('Dread Knight', 'Paladin', 'Darkweaver', 'Lightweaver', 'Dragon Knight')
 renowned_occupation_box.grid_remove()
@@ -3806,12 +3853,12 @@ renowned_occupation_box.grid_remove()
 renowned_occupation_box.bind("<<ComboboxSelected>>", change_occupation)
 
 vocation_check = ttk.Checkbutton(leftframe, text='Vocation?', command=change_occupation, variable=vocation_on)
-vocation_check.grid(column=0, row=8, sticky=W)
+vocation_check.grid(column=0, row=9, sticky=W)
 
 vocation_box = ttk.Combobox(leftframe, width=20, textvariable=vocation, font=normalfont)
-vocation_box.grid(column=1, row=8, sticky=W)
+vocation_box.grid(column=1, row=9, sticky=W)
 vocation_box.state(["readonly"])
-vocation_box['values'] = ('Archer', 'Artisan', 'Battle Mage', 'Brew Master', 'Shaman', 'Stalwart', 'Swashbuckler', 'Undead Hunter')
+vocation_box['values'] = ('Archer', 'Artisan', 'Battle Mage', 'Bounty Hunter', 'Brew Master', 'Conqueror', 'Shaman', 'Stalwart', 'Swashbuckler', 'Undead Hunter')
 vocation_box.grid_remove()
 vocation_box.bind("<<ComboboxSelected>>", change_occupation)
 
