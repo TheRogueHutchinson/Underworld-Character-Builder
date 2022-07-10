@@ -4,6 +4,7 @@ from tkinter import font
 from tkinter import filedialog
 
 from CP_Costs import assassin_costs, bard_costs, druid_costs, mage_costs, merc_costs, nightblade_costs, ranger_costs, templar_costs, witchhunter_costs, champion_costs, demagogue_costs, demagogue_costs
+from Frag_Costs import all_frag_costs, warrior_frag_costs, rogue_frag_costs, scholar_frag_costs
 
 from Blankets_to_CP import blanketconversion_dict
 
@@ -49,6 +50,10 @@ race_to_culture_names = { "Savar'Aving" : "Taliss Pride", "Gargylen" : "Obsidian
 	"Dark Elf" : "House Mortuus", "High Elf" : "Domaine Magique", "Wild Elf" : "Kraken", "Wood Fae" : "House of Séasúir",
 	"Orc" : "Ebon Khan", "Ajaunti" : "Clan Vinatore", "Einher" : "True Berserker", "Hobling" : "Five Sons Bakery" }
 	
+frag_tier1 = [ "Am'Rath", "Faun", "Minotaur", "Kobold", "Ogre", "Squamata" ]
+frag_tier2 = [ "Avian", "Draconian", "Fire Elf", "Goblin", "Risen", "Wolven", "Yokai" ]
+frag_tier3 = [ "Carnal Fae", "Faceless", "Gnome", "Ice Elf", "Sidhe" "Vulcan Dwarf" ]
+	
 racial_purch_name = StringVar()
 racial_auto_name = StringVar()
 racial1_cstvar = StringVar()
@@ -68,6 +73,7 @@ CP_spent = StringVar()
 CP_free = StringVar()
 level = StringVar()
 HP = StringVar()
+frags_spent = StringVar()
 
 player_name = StringVar()
 char_name = StringVar()
@@ -157,7 +163,7 @@ hdrink_cstvar = StringVar()
 create_alcohol_cstvar = StringVar()
 colddead_cstvar = StringVar()
 favoured_cstvar = StringVar()
-hindsight_cstvar = StringVar()
+#hindsight_cstvar = StringVar()
 intuition_cstvar = StringVar()
 
 # Frag Specific
@@ -313,7 +319,7 @@ colddead = StringVar()
 create_alcohol = StringVar()
 favoured = StringVar()
 hdrink = StringVar()
-hindsight = StringVar()
+#hindsight = StringVar()
 looting = StringVar()
 intuition = StringVar()
 paragon = StringVar()
@@ -349,6 +355,37 @@ versa7name = StringVar()
 versa8name = StringVar()
 versa9name = StringVar()
 
+## Frags
+
+colddead_frag_cstvar = StringVar()
+create_alcohol_frag_cstvar = StringVar()
+favoured_frag_cstvar = StringVar()
+hdrink_frag_cstvar = StringVar()
+#hindsight_frag_cstvar = StringVar()
+looting_frag_cstvar = StringVar()
+intuition_frag_cstvar = StringVar()
+paragon_frag_cstvar = StringVar()
+paragon_level_frag_cstvar = StringVar()
+possum_frag_cstvar = StringVar()
+teacher_frag_cstvar = StringVar()
+
+frag1_frag_cstvar = StringVar()
+frag2_frag_cstvar = StringVar()
+frag3_frag_cstvar = StringVar()
+frag4_frag_cstvar = StringVar()
+frag5_frag_cstvar = StringVar()
+frag6_frag_cstvar = StringVar()
+
+versa1_frag_cstvar = StringVar()
+versa2_frag_cstvar = StringVar()
+versa3_frag_cstvar = StringVar()
+versa4_frag_cstvar = StringVar()
+versa5_frag_cstvar = StringVar()
+versa6_frag_cstvar = StringVar()
+versa7_frag_cstvar = StringVar()
+versa8_frag_cstvar = StringVar()
+versa9_frag_cstvar = StringVar()
+
 skill_costs = {
 
 	#Production
@@ -371,7 +408,7 @@ skill_costs = {
 	"create_alcohol_cost":create_alcohol_cstvar,
 	"cold_dead_hands_cost":colddead_cstvar,
 	"favoured_cost":favoured_cstvar,
-	"hindsight_cost":hindsight_cstvar,
+	#"hindsight_cost":hindsight_cstvar,
 	"intuition_cost":intuition_cstvar,
 
 	#Frag Specific
@@ -693,15 +730,15 @@ def hdrink_down(event):
 	calc_spent_cp()
 	hdrink.set('1')
 		
-def hindsight_up(event):
-	hindsight.set('1')
-	calc_spent_cp()
-	hindsight.set('0')
+#def hindsight_up(event):
+#	hindsight.set('1')
+#	calc_spent_cp()
+#	hindsight.set('0')
 
-def hindsight_down(event):
-	hindsight.set('0')
-	calc_spent_cp()
-	hindsight.set('1')
+#def hindsight_down(event):
+#	hindsight.set('0')
+#	calc_spent_cp()
+#	hindsight.set('1')
 
 def looting_up(event):
 	if (int(looting.get()) != 5):
@@ -1255,6 +1292,7 @@ def sphere1_down(event):
 	sphere1.set('1')
 	
 def sphere2_down(event):
+	sphere2name.set('')
 	sphere2.set('0')
 	calc_spent_cp()
 	sphere2.set('1')
@@ -1273,6 +1311,7 @@ def sphere3_up(event):
 		calc_spent_cp()
 
 def sphere3_down(event):
+	sphere3name.set('')
 	if (int(sphere3.get()) != 0):
 		sphere3.set(int(sphere3.get())-1)
 		calc_spent_cp()
@@ -1894,7 +1933,7 @@ def savefile():
 	text_to_file = text_to_file + "\n'create_alcohol': '" + create_alcohol.get() + "',"
 	text_to_file = text_to_file + "\n'favoured': '" + favoured.get() + "',"
 	text_to_file = text_to_file + "\n'hdrink': '" + hdrink.get() + "',"
-	text_to_file = text_to_file + "\n'hindsight': '" + hindsight.get() + "',"
+	#text_to_file = text_to_file + "\n'hindsight': '" + hindsight.get() + "',"
 	text_to_file = text_to_file + "\n'looting': '" + looting.get() + "',"
 	text_to_file = text_to_file + "\n'intuition': '" + intuition.get() + "',"
 	text_to_file = text_to_file + "\n'paragon': '" + paragon.get() + "',"
@@ -1937,7 +1976,10 @@ def openfile():
 	player_name.set(file_dict['player_name'])
 	char_name.set(file_dict['char_name'])
 	race.set(file_dict['race'])
-	culture_on.set(file_dict['culture_on'])
+	try:
+		culture_on.set(file_dict['culture_on'])
+	except:
+		culture_on.set('0')
 	frag_race.set(file_dict['frag_race'])
 
 	blankets.set(file_dict['blankets'])
@@ -2025,7 +2067,7 @@ def openfile():
 	create_alcohol.set(file_dict['create_alcohol'])
 	favoured.set(file_dict['favoured'])
 	hdrink.set(file_dict['hdrink'])
-	hindsight.set(file_dict['hindsight'])
+	#hindsight.set(file_dict['hindsight'])
 	looting.set(file_dict['looting'])
 	intuition.set(file_dict['intuition'])
 	paragon.set(file_dict['paragon'])
@@ -2078,11 +2120,12 @@ def savetext():
 		
 	text_to_file = text_to_file + "\n" + "Level: " + level.get()
 	text_to_file = text_to_file + "\n" + "Hit Points: " + HP.get()
-	text_to_file = text_to_file + "\n" + "Blankets: " + blankets.get()
+	text_to_file = text_to_file + "\n\n" + "Blankets: " + blankets.get()
 	text_to_file = text_to_file + "\n" + "Total CP: " + CP.get()
 	text_to_file = text_to_file + "\n" + "Spent CP: " + CP_spent.get()
 	text_to_file = text_to_file + "\n" + "Free CP: " + CP_free.get()
 	text_to_file = text_to_file + "\n" + "Total CP: " + CP.get()
+	text_to_file = text_to_file + "\n" + "Frag Cost: " + frags_spent.get()
 	text_to_file = text_to_file + "\n\n" + "Skills:\n"
 	try:
 		text_to_file = text_to_file + all_skills.get('1.0', 'end')
@@ -2596,14 +2639,37 @@ def depend_check():
 		sphere3name_box.grid_remove()
 		sphere3name_box.config(state='disabled')
 		
-	if (occupation.get() == "RENOWNED"):
-		sphere1name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Dark', 'Draconic', 'Light', 'Necromancy', 'Sigil', 'Wytchcraft')
-		sphere2name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Dark', 'Draconic', 'Light', 'Necromancy', 'Sigil', 'Wytchcraft')
-		sphere3name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Dark', 'Draconic', 'Light', 'Necromancy', 'Sigil', 'Wytchcraft')
-	else:
-		sphere1name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Necromancy', 'Sigil', 'Wytchcraft')
-		sphere2name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Necromancy', 'Sigil', 'Wytchcraft')
-		sphere3name_box['values'] = ('Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Necromancy', 'Sigil', 'Wytchcraft')
+	spherelist = ['Elemental', 'Healing', 'Nature', 'Protections', 'Psionics', 'Necromancy', 'Sigil', 'Wytchcraft']
+	if (occupation.get() == "RENOWNED" and (renowned_occupation.get() == "Dread Knight" or renowned_occupation.get() == "Darkweaver")):
+		spherelist.append('Dark')
+	elif (occupation.get() == "RENOWNED" and (renowned_occupation.get() == "Paladin" or renowned_occupation.get() == "Lightweaver")):
+		spherelist.append('Light')
+	elif (occupation.get() == "RENOWNED" and renowned_occupation.get() == "Dragon Knight"):
+		spherelist.append('Draconic')
+	spherelist.sort()
+	
+	spherelist1 = []
+	spherelist2 = []
+	spherelist3 = []
+	
+	for x in spherelist:
+		spherelist1.append(x)
+		spherelist2.append(x)
+		spherelist3.append(x)
+	
+	if (sphere1name.get() != ''):
+		spherelist2.remove(sphere1name.get())
+		spherelist3.remove(sphere1name.get())
+	if (sphere2name.get() != ''):
+		spherelist1.remove(sphere2name.get())
+		spherelist3.remove(sphere2name.get())
+	if (sphere3name.get() != ''):
+		spherelist1.remove(sphere3name.get())
+		spherelist2.remove(sphere3name.get())
+	
+	sphere1name_box['values'] = spherelist1
+	sphere2name_box['values'] = spherelist2
+	sphere3name_box['values'] = spherelist3
 	
 	set_slots()
 	
@@ -2772,11 +2838,11 @@ def depend_check():
 		frag6_spin.config(to = 10)
 		frag6_spin.config(state='active')
 		
-	if (int(mysticism.get()) > 0):
-		hindsight_spin.config(state='active')
-	else:
-		hindsight_spin.set('0')
-		hindsight_spin.config(state='disabled')
+	#if (int(mysticism.get()) > 0):
+	#	hindsight_spin.config(state='active')
+	#else:
+	#	hindsight_spin.set('0')
+	#	hindsight_spin.config(state='disabled')
 		
 	# Spell Versatility
 
@@ -2857,6 +2923,31 @@ def set_occupationals(var_occupation):
 	occup_2_name.set(occupation_dictionary[str(var_occupation)]["occ_2"])
 	occup_3_name.set(occupation_dictionary[str(var_occupation)]["occ_3"])
 	occup_4_name.set(occupation_dictionary[str(var_occupation)]["occ_4"])
+
+def check_vocation_requirements(var_vocation):
+	if ((var_vocation == "Archer" and ((groupprof_large.get() == "1" or groupprof_med.get() == "1") and (spec_group.get() != "0" or spec_specific.get() != "0")))
+	or
+	(var_vocation == "Artisan" and (tradesman.get() == "10" or (int(tradesman.get()) > 5 and (int(blacksmith.get()) + int(alchemy.get()) + int(trapper.get()) + int(create_scroll.get()) > 4))))
+	or 
+	(var_vocation == "Battle Mage" and (sphere2.get() == "1" or int(slot4.get()) > 0))
+	or
+	(var_vocation == "Brew Master" and (int(create_alcohol.get()) > 4 or int(alchemy.get()) > 4))
+	or
+	(var_vocation == "Bounty Hunter" and (int(sap.get()) > 0 and ambidexterity.get() == "1"))
+	or
+	(var_vocation == "Conqueror" and ((int(slay.get()) > 0 or int(slay_master.get()) > 0) and (groupprof_large.get() == "1" or int(prof_exotic.get()) > 0)))
+	or
+	(var_vocation == "Shaman" and (int(mysticism.get()) > 6 or (int(slot5.get()) > 0 and (sphere1name.get() == "Nature" or sphere2name.get() == "Nature" or sphere3name.get() == "Nature"))))
+	or
+	(var_vocation == "Stalwart" and (heavy_armour.get() == "1") and (shield.get() == "1") and ((int(slay.get()) > 0) or (int(slay_master.get()) > 0)))
+	or
+	(var_vocation == "Swashbuckler" and (ambidexterity.get() == "1") and ((int(dodge.get()) > 0) or ((int(slay.get()) > 0) or (int(slay_master.get()) > 0))))
+	or
+	(var_vocation == "Undead Hunter" and necromantic_arts.get() == "1" and (spec_group.get() == "1" or spec_specific.get() == "1" or (int(slot5.get()) > 0 and (sphere1name.get() == "Healing" or sphere2name.get() == "Healing" or sphere3name.get() == "Healing"))))
+	):
+		vocation_box.config(foreground='black', font=normalfont)
+	else:
+		vocation_box.config(foreground='red', font=boldfont)
 	
 def change_occupation(*args):
 	if (vocation_on.get() == '0'):
@@ -2993,7 +3084,7 @@ def change_race(*args):
 		lbl_str.set('')
 		racial_str_cstvar.set('')
 	
-	elif (race.get() == "Wolven"):
+	elif (frag_race.get() == "Wolven"):
 		racial_str_spin.grid()
 		lbl_str.set('Strength Bonus')
 		racial_str_cstvar.set('50')
@@ -3061,7 +3152,6 @@ def set_skill_costs(var_occupation):
 		
 	elif (var_occupation == "Lightweaver" or var_occupation == "Darkweaver" or var_occupation == "Dragon Knight"):
 		occ_dict = demagogue_costs
-		
 	else:
 		print ("PROBLEM - INVALID CLASS")
 		
@@ -3091,7 +3181,7 @@ def set_skill_costs(var_occupation):
 	create_alcohol_cstvar.set(occ_dict["create_alcohol_cost"])
 	colddead_cstvar.set(occ_dict["cold_dead_hands_cost"])
 	favoured_cstvar.set(occ_dict["favoured_cost"])
-	hindsight_cstvar.set(occ_dict["hindsight_cost"])
+	#hindsight_cstvar.set(occ_dict["hindsight_cost"])
 	intuition_cstvar.set(occ_dict["intuition_cost"])
 
 	#Scholar
@@ -3206,7 +3296,40 @@ def set_skill_costs(var_occupation):
 	execute_cstvar.set(occ_dict["execute_cost"])
 	execute_master_cstvar.set(occ_dict["execute_master_cost"])
 	
+	set_frag_costs(var_occupation)
+	
 	calc_spent_cp()
+
+def set_frag_costs(var_occupation):
+
+	if (var_occupation == "Assassin" or var_occupation == "Nightblade" or var_occupation == "Witch Hunter"):
+		occ_dict = rogue_frag_costs
+		
+	elif (var_occupation == "Bard" or var_occupation == "Druid" or var_occupation == "Mage" or var_occupation == "Lightweaver" or var_occupation == "Darkweaver" or var_occupation == "Dragon Knight"):
+		occ_dict = scholar_frag_costs
+
+	elif (var_occupation == "Mercenary" or var_occupation == "Ranger" or var_occupation == "Templar" or var_occupation == "Dread Knight" or var_occupation == "Paladin"):
+		occ_dict = warrior_frag_costs
+		
+	colddead_frag_cstvar.set(all_frag_costs["cold_dead_hands_frag_cost"])
+	create_alcohol_frag_cstvar.set(all_frag_costs["create_alcohol_frag_cost"])
+	favoured_frag_cstvar.set(all_frag_costs["favoured_frag_cost"])
+	hdrink_frag_cstvar.set(all_frag_costs["heavy_drinker_frag_cost"])
+	if (var_occupation == "Nightblade"):
+		looting_frag_cstvar.set(5)
+	else:
+		looting_frag_cstvar.set(all_frag_costs["looting_frag_cost"])
+	intuition_frag_cstvar.set(all_frag_costs["intuition_frag_cost"])
+	paragon_frag_cstvar.set(all_frag_costs["paragon_frag_cost"])
+	possum_frag_cstvar.set(all_frag_costs["possum_frag_cost"])
+	teacher_frag_cstvar.set(all_frag_costs["teacher_frag_cost"])
+
+	frag1_frag_cstvar.set(occ_dict["frag1_cost"])
+	frag2_frag_cstvar.set(occ_dict["frag2_cost"])
+	frag3_frag_cstvar.set(occ_dict["frag3_cost"])
+	frag4_frag_cstvar.set(occ_dict["frag4_cost"])
+	frag5_frag_cstvar.set(occ_dict["frag5_cost"])
+	frag6_frag_cstvar.set(occ_dict["frag6_cost"])
 
 def reset_school_frag_skills (new_school):
 	if (new_school.get() != school_current.get()):
@@ -3440,8 +3563,8 @@ def set_skill_list(*args):
 		skill_list_str = skill_list_str + "\nFavoured" + '	' + str(int(favoured_cstvar.get()) * int(favoured.get()))
 	if (int(hdrink.get()) > 0):
 		skill_list_str = skill_list_str + "\nHeavy Drinker" + '	' + str(int(hdrink_cstvar.get()) * int(hdrink.get()))
-	if (int(hindsight.get()) > 0):
-		skill_list_str = skill_list_str + "\nHindsight" + '	' + str(int(hindsight_cstvar.get()) * int(hindsight.get()))
+	#if (int(hindsight.get()) > 0):
+	#	skill_list_str = skill_list_str + "\nHindsight" + '	' + str(int(hindsight_cstvar.get()) * int(hindsight.get()))
 	if (int(looting.get()) > 0):
 		skill_list_str = skill_list_str + "\nLooting x" + looting.get()+ '	' + str(int(looting_cstvar.get()) * int(looting.get()))
 	if (int(intuition.get()) > 0):
@@ -3504,6 +3627,8 @@ def set_skill_list(*args):
 def calc_spent_cp(*args):
 
 	depend_check()
+	if (vocation_on.get() == "1"):
+		check_vocation_requirements(vocation.get())
 
 	spent_CP = 0
 	
@@ -3571,7 +3696,7 @@ def calc_spent_cp(*args):
 	spent_CP = spent_CP + int(create_alcohol.get()) * int(create_alcohol_cstvar.get())
 	spent_CP = spent_CP + int(favoured.get()) * int(favoured_cstvar.get())
 	spent_CP = spent_CP + int(hdrink.get()) * int(hdrink_cstvar.get())
-	spent_CP = spent_CP + int(hindsight.get()) * int(hindsight_cstvar.get())
+	#spent_CP = spent_CP + int(hindsight.get()) * int(hindsight_cstvar.get())
 	spent_CP = spent_CP + int(looting.get()) * int(looting_cstvar.get())
 	spent_CP = spent_CP + int(intuition.get()) * int(intuition_cstvar.get())
 	spent_CP = spent_CP + int(possum.get()) * int(possum_cstvar.get())
@@ -3634,6 +3759,69 @@ def calc_spent_cp(*args):
 		CP_free_entry.config(foreground='black', font=normalfont)
 		
 	set_skill_list()
+	calc_spent_frags()
+	
+def calc_spent_frags(*args):
+
+	frags = 0
+	
+	# Skills
+	
+	frags = frags + int(colddead.get()) * int(colddead_frag_cstvar.get())
+	frags = frags + int(create_alcohol.get()) * int(create_alcohol_frag_cstvar.get())
+	frags = frags + int(favoured.get()) * int(favoured_frag_cstvar.get())
+	frags = frags + int(hdrink.get()) * int(hdrink_frag_cstvar.get())
+	frags = frags + int(looting.get()) * int(looting_frag_cstvar.get())
+	frags = frags + int(intuition.get()) * int(intuition_frag_cstvar.get())	
+	frags = frags + int(paragon.get()) * int(paragon_frag_cstvar.get())
+	frags = frags + int(possum.get()) * int(possum_frag_cstvar.get())
+	frags = frags + int(teacher.get()) * int(teacher_frag_cstvar.get())
+	frags = frags + int(frag1.get()) * int(frag1_frag_cstvar.get())
+	frags = frags + int(frag2.get()) * int(frag2_frag_cstvar.get())
+	frags = frags + int(frag3.get()) * int(frag3_frag_cstvar.get())
+	frags = frags + int(frag4.get()) * int(frag4_frag_cstvar.get())
+	frags = frags + int(frag5.get()) * int(frag5_frag_cstvar.get())
+	frags = frags + int(frag6.get()) * int(frag6_frag_cstvar.get())
+	
+	# Race
+	
+	if (race.get() == "FRAG"):
+		if (frag_race.get() in frag_tier1):
+			frags = frags + 75
+		elif (frag_race.get() in frag_tier2):
+			frags = frags + 150
+		else:
+			frags = frags + 250
+	
+	if (culture_on.get() == "1"):
+		frags = frags + 100
+		
+	# Occupation
+	
+	if (vocation_on.get() == '1'):
+		frags = frags + 150
+		
+	# Magic
+	
+	if (sphere1name.get() == "Necromancy" or sphere1name.get() == "Sigil" or sphere1name.get() == "Wytchcraft"):
+		frags = frags + 100
+	if (sphere2name.get() == "Necromancy" or sphere2name.get() == "Sigil" or sphere2name.get() == "Wytchcraft"):
+		frags = frags + 100
+	if (sphere3name.get() == "Necromancy" or sphere3name.get() == "Sigil" or sphere3name.get() == "Wytchcraft"):
+		frags = frags + 100
+		
+	if (school_current.get() == 'Scholar'):
+		frags = frags + int(versa1.get()) * int(versa1_cstvar.get())
+		frags = frags + int(versa2.get()) * int(versa2_cstvar.get())
+		frags = frags + int(versa3.get()) * int(versa3_cstvar.get())
+		frags = frags + int(versa4.get()) * int(versa4_cstvar.get())
+		frags = frags + int(versa5.get()) * int(versa5_cstvar.get())
+		frags = frags + int(versa6.get()) * int(versa6_cstvar.get())
+		frags = frags + int(versa7.get()) * int(versa7_cstvar.get())
+		frags = frags + int(versa8.get()) * int(versa8_cstvar.get())
+		frags = frags + int(versa9.get()) * int(versa9_cstvar.get())
+		
+	frags_spent.set(str(frags))
 
 def reset ():	
 	CP_free_entry.config(foreground='black', font=normalfont)
@@ -3681,8 +3869,8 @@ def reset ():
 	sphere2.set('0')
 	sphere3.set('0')
 	sphere1name.set('Elemental')
-	sphere2name.set('Healing')
-	sphere3name.set('Nature')
+	sphere2name.set('')
+	sphere3name.set('')
 	readmagic_ritual.set('0')
 	sphereadv.set('0')
 	elemental_attune.set('0')
@@ -3726,7 +3914,7 @@ def reset ():
 	create_alcohol.set('0')
 	favoured.set('0')
 	hdrink.set('0')
-	hindsight.set('0')
+	#hindsight.set('0')
 	looting.set('0')
 	intuition.set('0')
 	paragon.set('0')
@@ -3855,7 +4043,7 @@ renowned_occupation_box.bind("<<ComboboxSelected>>", change_occupation)
 vocation_check = ttk.Checkbutton(leftframe, text='Vocation?', command=change_occupation, variable=vocation_on)
 vocation_check.grid(column=0, row=9, sticky=W)
 
-vocation_box = ttk.Combobox(leftframe, width=20, textvariable=vocation, font=normalfont)
+vocation_box = ttk.Combobox(leftframe, width=20, textvariable=vocation, font=normalfont, foreground='black')
 vocation_box.grid(column=1, row=9, sticky=W)
 vocation_box.state(["readonly"])
 vocation_box['values'] = ('Archer', 'Artisan', 'Battle Mage', 'Bounty Hunter', 'Brew Master', 'Conqueror', 'Shaman', 'Stalwart', 'Swashbuckler', 'Undead Hunter')
@@ -3893,6 +4081,11 @@ ttk.Label(blanketframe_left, text='HP', font=boldfont).grid(column=1, row=2, sti
 HP_entry = ttk.Entry(blanketframe_left, width=7, textvariable=HP, font=normalfont)
 HP_entry.state(["readonly"])
 HP_entry.grid(column=1,row=4, sticky=W)
+
+ttk.Label(blanketframe_right, text='Frags', font=boldfont).grid(column=0, row=2, sticky=W)
+frag_entry = ttk.Entry(blanketframe_right, width=7, textvariable=frags_spent, font=normalfont)
+frag_entry.state(["readonly"])
+frag_entry.grid(column=0,row=3, sticky=W)
 
 ttk.Label(leftframe, text='Skills', font=boldfont).grid(column=0, row=11, sticky=W)
 all_skills = Text(leftframe, font=normalfont, width=15, height=10)
@@ -4086,53 +4279,53 @@ hdrink_spin.grid(column=5, row=8, sticky=W)
 hdrink_spin.bind("<<Increment>>", hdrink_up)
 hdrink_spin.bind("<<Decrement>>", hdrink_down)
 
-ttk.Label(skillsframe_general, text='Hindsight', font=normalfont).grid(column=3, row=9, padx=(3,3), sticky=W)
-ttk.Label(skillsframe_general, textvariable=hindsight_cstvar, font=normalfont).grid(column=4, row=9, padx=(3,3), sticky=E)
-hindsight_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvariable=hindsight, font=normalfont)
-hindsight_spin.grid(column=5, row=9, sticky=W)
-hindsight_spin.bind("<<Increment>>", hindsight_up)
-hindsight_spin.bind("<<Decrement>>", hindsight_down)
-hindsight_spin.state(['disabled'])
+#ttk.Label(skillsframe_general, text='Hindsight', font=normalfont).grid(column=3, row=9, padx=(3,3), sticky=W)
+#ttk.Label(skillsframe_general, textvariable=hindsight_cstvar, font=normalfont).grid(column=4, row=9, padx=(3,3), sticky=E)
+#hindsight_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvariable=hindsight, font=normalfont)
+#hindsight_spin.grid(column=5, row=9, sticky=W)
+#hindsight_spin.bind("<<Increment>>", hindsight_up)
+#hindsight_spin.bind("<<Decrement>>", hindsight_down)
+#hindsight_spin.state(['disabled'])
 
-ttk.Label(skillsframe_general, text='Intuition', font=normalfont).grid(column=3, row=10, sticky=W, padx=(3,3))
-ttk.Label(skillsframe_general, textvariable=intuition_cstvar, font=normalfont).grid(column=4, row=10, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_general, text='Intuition', font=normalfont).grid(column=3, row=9, sticky=W, padx=(3,3))
+ttk.Label(skillsframe_general, textvariable=intuition_cstvar, font=normalfont).grid(column=4, row=9, padx=(3,3), sticky=E)
 intuition_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvariable=intuition, font=normalfont)
-intuition_spin.grid(column=5, row=10, sticky=W)
+intuition_spin.grid(column=5, row=9, sticky=W)
 intuition_spin.bind("<<Increment>>", intuition_up)
 intuition_spin.bind("<<Decrement>>", intuition_down)
 
-ttk.Label(skillsframe_general, text='Looting', font=normalfont).grid(column=6, row=8, sticky=W, padx=(3,3))
-ttk.Label(skillsframe_general, textvariable=looting_cstvar, font=normalfont).grid(column=7, row=8, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_general, text='Looting', font=normalfont).grid(column=3, row=10, sticky=W, padx=(3,3))
+ttk.Label(skillsframe_general, textvariable=looting_cstvar, font=normalfont).grid(column=4, row=10, padx=(3,3), sticky=E)
 looting_spin = ttk.Spinbox(skillsframe_general, from_=0, to=5, width=3, textvariable=looting, font=normalfont)
-looting_spin.grid(column=8, row=8, sticky=W)
+looting_spin.grid(column=5, row=10, sticky=W)
 looting_spin.bind("<<Increment>>", looting_up)
 looting_spin.bind("<<Decrement>>", looting_down)
 
-ttk.Label(skillsframe_general, text='Paragon', font=normalfont).grid(column=6, row=9, padx=(3,3), sticky=W)
-ttk.Label(skillsframe_general, textvariable=paragon_cstvar, font=normalfont).grid(column=7, row=9, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_general, text='Paragon', font=normalfont).grid(column=6, row=8, padx=(3,3), sticky=W)
+ttk.Label(skillsframe_general, textvariable=paragon_cstvar, font=normalfont).grid(column=7, row=8, padx=(3,3), sticky=E)
 paragon_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvariable=paragon, font=normalfont)
-paragon_spin.grid(column=8, row=9, sticky=W)
+paragon_spin.grid(column=8, row=8, sticky=W)
 paragon_spin.bind("<<Increment>>", paragon_up)
 paragon_spin.bind("<<Decrement>>", paragon_down)
 
 paragon_level_spin = ttk.Spinbox(skillsframe_general, from_=1, to=7, width=3, textvariable=paragon_level, font=normalfont)
-paragon_level_spin.grid(column=9, row=9)
+paragon_level_spin.grid(column=9, row=8)
 paragon_level_spin.bind("<<Increment>>", paragon_level_up)
 paragon_level_spin.bind("<<Decrement>>", paragon_level_down)
 paragon_level_spin.bind('<Return>', calc_spent_cp)
 paragon_level_spin.grid_remove()
 
-ttk.Label(skillsframe_general, text='Possum', font=normalfont).grid(column=6, row=10, padx=(3,3), sticky=W)
-ttk.Label(skillsframe_general, textvariable=possum_cstvar, font=normalfont).grid(column=7, row=10, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_general, text='Possum', font=normalfont).grid(column=6, row=9, padx=(3,3), sticky=W)
+ttk.Label(skillsframe_general, textvariable=possum_cstvar, font=normalfont).grid(column=7, row=9, padx=(3,3), sticky=E)
 possum_spin = ttk.Spinbox(skillsframe_general, from_=0, to=10, width=3, textvariable=possum, font=normalfont)
-possum_spin.grid(column=8, row=10, sticky=W)
+possum_spin.grid(column=8, row=9, sticky=W)
 possum_spin.bind("<<Increment>>", possum_up)
 possum_spin.bind("<<Decrement>>", possum_down)
 
-ttk.Label(skillsframe_general, text='Teacher', font=normalfont).grid(column=6, row=11, padx=(3,3), sticky=W)
-ttk.Label(skillsframe_general, textvariable=teacher_cstvar, font=normalfont).grid(column=7, row=11, padx=(3,3), sticky=E)
+ttk.Label(skillsframe_general, text='Teacher', font=normalfont).grid(column=6, row=10, padx=(3,3), sticky=W)
+ttk.Label(skillsframe_general, textvariable=teacher_cstvar, font=normalfont).grid(column=7, row=10, padx=(3,3), sticky=E)
 teacher_spin = ttk.Spinbox(skillsframe_general, from_=0, to=1, width=3, textvariable=teacher, font=normalfont)
-teacher_spin.grid(column=8, row=11, sticky=W)
+teacher_spin.grid(column=8, row=10, sticky=W)
 teacher_spin.bind("<<Increment>>", teacher_up)
 teacher_spin.bind("<<Decrement>>", teacher_down)
 

@@ -1,9 +1,8 @@
-To Do
-- Add Vocation requirements
+To do
+- Let people remove spell slots instead of starting from scratch
+- Fix issue where vocation sometimes becomes bold and black, not bold and red
 
 Requests
 - Add multiple selection dropdowns (radials) to allow selection of multiple sphere 3s, specs, etc.
-- Let people remove spell slots instead of starting from scratch
-- Add frags
 - Work with Apple
 - Work with mobile
